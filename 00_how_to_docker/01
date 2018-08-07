@@ -1,0 +1,4 @@
+# 00_how_to_docker - 01
+# Q: Créer une machine virtuelle avec 'docker-machine' utilisant le driver
+#    'virtualbox' et ayant pour nom 'Char'
+

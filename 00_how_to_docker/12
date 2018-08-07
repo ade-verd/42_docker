@@ -1,0 +1,8 @@
+# 00_how_to_docker - 12
+# Q: Lancer un container 'mysql' en tâche de fond. Il devra aussi pouvoir
+#    redémarrer de lui-même en cas d’erreur et faire en sorte que le password
+#	 root de la base de données soit 'Kerrigan'. Vous ferez aussi en sorte que
+#	 la base de données soit stockée dans le volume 'hatchery', que le container
+#	 crée directement une base de données qui aura comme nom 'zerglings' et le
+#	 container s’appellera 'spawning-pool'.
+

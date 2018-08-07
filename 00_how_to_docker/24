@@ -1,0 +1,6 @@
+# 00_how_to_docker - 24
+# Q: Lancer un SERVICE 'rabbitmq' qui aura pour nom 'orbital-command'.
+#    Vous devrez définir un user et un mot de passe spécifiques à l’utilisation
+#	 du service 'RabbitMQ', et ceux-ci seront à votre libre convenance.
+#	 Ce service sera sur le reseau 'overmind'
+

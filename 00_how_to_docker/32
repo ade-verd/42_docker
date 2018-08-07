@@ -1,0 +1,4 @@
+# 00_how_to_docker - 32
+# Q: Forcer l’arrêt et supprimer l’ensemble des containers (tous états confondus),
+#    en une seule commande.
+

@@ -1,0 +1,14 @@
+# 00_how_to_docker - 19
+# Q: Démarrer un container qui senommera 'Abathur'. 'Abathur' sera un container
+#    Python en version 2-slim, qui aura son dossier '/root' bindé à un dossier
+#    du HOME de votre host, ainsi que le port 3000 bindé au port 3000 de votre
+#    machine virtuelle.
+#    Vous personnaliserez ce container de telle sorte que vous puissiez utiliser
+#    le micro- framework 'Flask' dans sa dernière version. Vous devrez faire en
+#    sorte qu’une page html renvoyant un "Hello World" dans des balises <h1>,
+#    soit servie par 'Flask'.
+#    Vous testerez la bonne mise en place de votre container, en accédant via 
+#    curl ou navigateur web,à l’adresse IP de votre machine virtuelle sur le
+#    port 3000.
+#    Vous listerez aussi toutes les commandes nécessaires dans votre rendu.
+

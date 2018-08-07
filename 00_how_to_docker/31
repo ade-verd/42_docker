@@ -1,0 +1,4 @@
+# 00_how_to_docker - 31
+# Q: Forcer l’arrêt et supprimer l’ensemble des services sur le swarm local,
+#    en une seule commande
+
