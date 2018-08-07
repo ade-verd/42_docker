@@ -2,3 +2,13 @@
 # Q: Lancer le container 'hello-world' et faire en sorte que le container
 #    affiche bien son message d’accueil, puis le quitte.
 
+if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+    echo "No check"
+	exit 1
+fi
+
+echo "docker run hello-world"
+docker run hello-world
+
+# Sources:
+# https://docs.docker.com/get-started/#test-docker-version

@@ -1,7 +1,36 @@
 # 00_how_to_docker - 06
 # Q: Lancer un container 'nginx' disponible sur le Docker Hub en tâche de fond.
 #    Le container lancé doit avoir pour nom 'overlord', doit pouvoir redémarrer
-#    de lui- même et doit avoir le port 80 du container rattaché au port 5000 de
+#    de lui-même et doit avoir le port 80 du container rattaché au port 5000 de
 #    'Char'. Vous pouvez vérifier le fonctionnement de votre container en allant
 #    sur un 'http://<ip-de-char>:5000' comme URL sur votre navigateur internet.
 
+VM="Char"
+IP=$(docker-machine ip $VM)
+PORT_VM=5000
+PORT_CONT=80
+URL="http://"$IP":"$PORT_VM
+
+if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+    echo "docker ps -a | grep \"overlord\|NAMES\""
+    docker ps -a | grep "overlord\|NAMES"   
+	echo
+	read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
+	if [[ $REPLY =~ ^[cC]$ ]]; then
+		echo "\ncurl $URL"
+		curl $URL
+	elif [[ $REPLY =~ ^[oO]$ ]]; then
+		echo "\nopen $URL"
+		open $URL
+	fi
+	exit 1
+fi
+
+echo "docker run -d -p $PORT_VM:$PORT_CONT --name=overlord --restart always nginx"
+docker run -d -p $PORT_VM:$PORT_CONT --name=overlord --restart always nginx
+
+# Sources:
+# https://docs.docker.com/engine/reference/commandline/run/
+# -d=false: Detached mode: Run container in the background, print new container id
+# --publish , -p		Publish a container’s port(s) to the host
+# --restart	no|on-failure|always	Restart policy to apply when a container exits

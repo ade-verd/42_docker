@@ -1,3 +1,14 @@
 # 00_how_to_docker - 02
 # Q: Récupérer l’adresse IP de la machine virtuelle 'Char'
 
+if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+    echo "VBoxManage guestproperty enumerate Char | grep IP"
+    VBoxManage guestproperty enumerate Char | grep IP
+	exit 1
+fi
+
+echo "docker-machine ip Char"
+docker-machine ip Char
+
+# Sources:
+# https://docs.docker.com/machine/reference/ip/
