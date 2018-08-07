@@ -16,6 +16,13 @@ setup_docker() {
 		else
 			echo "Docker is already installed"
 		fi
+		if !(brew ls --versions docker-machine > /dev/null); then
+			brew update
+			brew install docker-machine && \
+			echo "Docker-machine has been installed"
+		else
+			echo "Docker-machine is already installed"
+		fi
 	fi
 }
 
