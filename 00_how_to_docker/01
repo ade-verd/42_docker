@@ -2,3 +2,14 @@
 # Q: Créer une machine virtuelle avec 'docker-machine' utilisant le driver
 #    'virtualbox' et ayant pour nom 'Char'
 
+if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+	VBoxManage list vms
+	exit 1
+fi
+
+docker-machine create --driver virtualbox Char
+
+# Sources:
+# https://docs.docker.com/machine/reference/create/
+# List all available virtual machines: 			'VBoxManage list vms'
+# List all running available virtual machines:	'VBoxManage list runningvms'
