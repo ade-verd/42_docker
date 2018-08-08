@@ -2,3 +2,16 @@
 # Q: Récupérer l’adresse IP interne du container 'overlord' sans lancer son
 #    shell et en une commande.
 
+CONTAINER_ID=overlord
+
+if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+    echo "docker inspect $CONTAINER_ID | grep IP"
+    docker inspect $CONTAINER_ID | grep IP
+	exit 1
+fi
+
+echo "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID"
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID 
+
+# Sources:
+# https://stackoverflow.com/questions/17157721/how-to-get-a-docker-containers-ip-address-from-the-host

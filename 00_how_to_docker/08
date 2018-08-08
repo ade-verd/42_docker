@@ -3,3 +3,20 @@
 #    puissiez directement interagir avec le container via votre terminal et que
 #	 le container se supprime à la fin de l’exécution du shell.
 
+if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+    echo "docker ps -a"
+    docker ps -a
+	exit 1
+fi
+
+echo "docker run -it --rm alpine"
+docker run -it --rm alpine
+
+# Sources:
+# https://docs.docker.com/engine/reference/commandline/run/
+# --rm	Automatically remove the container when it exits (docker run --help)
+# -i	Interactive mode (Keep STDIN open even if not attached)
+# -t	Allocate a pseudo-TTY
+#
+# Delete all containers : 	`docker rm $(docker ps -a -q)`
+# Delete all images : 		`docker rmi $(docker images -q)`
