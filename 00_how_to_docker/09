@@ -6,3 +6,20 @@
 #    Seules les commandes à effectuer dans le container sont demandées pour cet
 #    exercice.
 
+F_NO="\033[0m"
+F_REV="\033[7m"
+
+if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+	echo "You can check with this commands:"
+	printf "%b%s%b\n" $F_REV "dpkg -l | grep '^.i' | grep gcc" $F_NO
+	printf "%b%s%b\n" $F_REV "dpkg -l | grep '^.i' | grep git" $F_NO
+	exit 1
+fi
+
+printf "%s%b%s%b\n" "First, run: " $F_REV "docker run -it --rm debian" $F_NO
+echo "Then in debian shell, run:"
+printf "%b%s%b\n" $F_REV "apt-get update -y && apt-get upgrade -y && apt-get install -y gcc git" $F_NO
+
+# Sources:
+# man apt-get: https://manpages.debian.org/stretch/apt/apt-get.8.fr.html
+# List installed packages: https://wiki.debian.org/fr/ListInstalledPackages
