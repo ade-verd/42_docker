@@ -13,5 +13,5 @@ docker-machine create --driver virtualbox Char
 
 # Sources:
 # https://docs.docker.com/machine/reference/create/
-# List all available virtual machines: 			'VBoxManage list vms'
-# List all running available virtual machines:	'VBoxManage list runningvms'
+# List all available virtual machines: 			`VBoxManage list vms`
+# List all running available virtual machines:	`VBoxManage list runningvms`

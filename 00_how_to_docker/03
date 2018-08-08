@@ -1,10 +1,10 @@
 # 00_how_to_docker - 03
 # Q: Assigner les variables spécifiques à la machine virtuelle 'Char' dans l’env
 #    courant de votre terminal, de sorte que vous pouvez lancer la commande 
-#	 'docker ps' sans erreurs.
-#	 Une seule commande est attendue pour fixer les 4 variables d’environnement
-#	 et il vous est interdit d’utiliser le builtin de votre shell pour set à la
-#	 main ces variables.
+#    'docker ps' sans erreurs.
+#    Une seule commande est attendue pour fixer les 4 variables d’environnement
+#    et il vous est interdit d’utiliser le builtin de votre shell pour set à la
+#    main ces variables.
 
 if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
     echo "env | grep DOCKER"
@@ -12,8 +12,10 @@ if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
 	exit 1
 fi
 
-echo "eval \$(docker-machine env Char)"
-eval $(docker-machine env Char)
+echo "eval \"\$(docker-machine env Char)\""
+eval "$(docker-machine env Char)"
+exec $SHELL -i
 
 # Sources:
 # https://docs.docker.com/machine/reference/env/
+# unset: `eval $(docker-machine env --unset)`
