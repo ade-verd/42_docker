@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 14
 # Q: Lancer un container 'wordpress' en tâche de fond, pour le lulz.
 #    Le container doit avoir pour nom 'lair', le port 80 du container doit etre

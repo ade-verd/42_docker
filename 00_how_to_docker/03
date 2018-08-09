@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 03
 # Q: Assigner les variables spécifiques à la machine virtuelle 'Char' dans l’env
 #    courant de votre terminal, de sorte que vous pouvez lancer la commande 

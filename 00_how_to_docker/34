@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 34
 # Q: Supprimer la machine virtuelle 'Aiur' autrement qu’avec un 'rm -rf'
 

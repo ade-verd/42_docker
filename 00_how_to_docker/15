@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 15
 # Q: Lancer un container 'phpmyadmin' en tâche de fond. Le container doit avoir
 #    pour nom 'roach-warden', le port 80 du container doit etre bindé au port

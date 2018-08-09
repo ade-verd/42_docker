@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 09
 # Q: Depuis le shell d’un container 'debian', faire en sorte d’installer via le
 #    gestionnaire de paquets du container, de quoi compiler un code source en C

@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 13
 # Q: Afficher les variables d’environnement du container 'spawning-pool' en une
 #    seule commande, histoire d’être sûr que vous avez bien configuré votre

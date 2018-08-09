@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 06
 # Q: Lancer un container 'nginx' disponible sur le Docker Hub en tâche de fond.
 #    Le container lancé doit avoir pour nom 'overlord', doit pouvoir redémarrer
@@ -5,11 +7,13 @@
 #    'Char'. Vous pouvez vérifier le fonctionnement de votre container en allant
 #    sur un 'http://<ip-de-char>:5000' comme URL sur votre navigateur internet.
 
+OS=`uname`
 VM="Char"
 IP=$(docker-machine ip $VM)
 PORT_VM=5000
 PORT_CONT=80
 URL="http://"$IP":"$PORT_VM
+if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "docker ps -a | grep \"overlord\|NAMES\""
@@ -21,7 +25,7 @@ if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 		curl $URL
 	elif [[ $REPLY =~ ^[oO]$ ]]; then
 		echo "\nopen $URL"
-		open $URL
+		$OPEN $URL
 	fi
 	exit 1
 fi

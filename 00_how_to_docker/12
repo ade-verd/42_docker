@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 12
 # Q: Lancer un container 'mysql' en tâche de fond. Il devra aussi pouvoir
 #    redémarrer de lui-même en cas d’erreur et faire en sorte que le password

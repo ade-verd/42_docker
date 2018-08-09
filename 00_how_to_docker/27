@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 27
 # Q: Récuperer les logs en continu d’une des tasks du service 'engineering-bay'
 

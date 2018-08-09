@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 05
 # Q: Lancer le container 'hello-world' et faire en sorte que le container
 #    affiche bien son message d’accueil, puis le quitte.

@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 19
 # Q: Démarrer un container qui senommera 'Abathur'. 'Abathur' sera un container
 #    Python en version 2-slim, qui aura son dossier '/root' bindé à un dossier

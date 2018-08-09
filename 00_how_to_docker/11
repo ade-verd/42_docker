@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 11
 # Q: Lister les volumes Docker crées sur la machine... je dis bien VOLUMES
 

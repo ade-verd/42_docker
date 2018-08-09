@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # 00_how_to_docker - 08
 # Q: Lancer un shell depuis un container 'alpine', en faisant en sorte que vous
 #    puissiez directement interagir avec le container via votre terminal et que
