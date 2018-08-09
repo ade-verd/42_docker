@@ -6,3 +6,45 @@
 #    8081 de la machine virtuelle et doit pouvoir faire en sorte d’aller
 #    explorer la base de données contenue dans le container 'spawning-pool'.
 
+OS=`uname`
+VM="Char"
+IP=$(docker-machine ip $VM)
+PORT_VM=8081
+PORT_CONT=80
+URL="http://"$IP":"$PORT_VM
+if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
+
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+    echo "$ docker ps -a"
+    docker ps -a   
+	echo
+	read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
+	if [[ $REPLY =~ ^[oO]$ ]]; then
+		printf "\nopen %s\n" $URL
+		$OPEN $URL
+	elif [[ $REPLY =~ ^[cC]$ ]]; then
+		printf "\ncurl %s\n" $URL
+		curl $URL
+	fi
+	exit 1
+fi
+
+echo $ docker run \
+		-d --name roach-warden \
+		--link spawning-pool:db \
+		--env PMA_HOST=\$MYSQL_DATABASE \
+		-p $PORT_VM:$PORT_CONT \
+		phpmyadmin/phpmyadmin
+
+docker run -d \
+		--name roach-warden \
+		--link spawning-pool:db \
+		--env PMA_HOST=zerglings \
+		-p $PORT_VM:$PORT_CONT \
+		phpmyadmin/phpmyadmin
+
+#		--env PMA_HOST=$MYSQL_DATABASE \
+# Sources:
+# https://docs.docker.com/engine/reference/run/
+# https://docs.docker.com/engine/reference/commandline/run/
+# https://hub.docker.com/r/phpmyadmin/phpmyadmin/
