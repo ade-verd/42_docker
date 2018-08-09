@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # 00_how_to_docker - 14
-# Q: Lancer un container 'wordpress' en tâche de fond, pour le lulz.
+# Q: Lancer un container 'wordpress' en tâche de fond.
 #    Le container doit avoir pour nom 'lair', le port 80 du container doit etre
 #	 bindé au port 8080 de la machine virtuelle et doit pouvoir utiliser le
 #	 container 'spawning-pool' comme service de base de données.
@@ -9,3 +9,33 @@
 #	 en rentrant l’adresse IP de la machine virtuelle comme URL.
 #	 Bravo, vous venez de deployer un site Wordpress fonctionnel en 2 commandes!
 
+OS=`uname`
+VM="Char"
+IP=$(docker-machine ip $VM)
+PORT_VM=8080
+PORT_CONT=80
+URL="http://"$IP":"$PORT_VM
+if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
+
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+    echo "$ docker ps -a"
+    docker ps -a   
+	echo
+	read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
+	if [[ $REPLY =~ ^[cC]$ ]]; then
+		echo "\ncurl $URL"
+		curl $URL
+	elif [[ $REPLY =~ ^[oO]$ ]]; then
+		echo "\nopen $URL"
+		$OPEN $URL
+	fi
+	exit 1
+fi
+
+echo "$ docker run -d --name lair --link spawning-pool -p $PORT_VM:$PORT_CONT wordpress"
+docker run -d --name lair --link spawning-pool -p $PORT_VM:$PORT_CONT wordpress
+
+# Sources:
+# https://docs.docker.com/engine/reference/run/
+# https://docs.docker.com/engine/reference/commandline/run/
+# https://docs.docker.com/samples/library/wordpress/

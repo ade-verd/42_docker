@@ -9,18 +9,21 @@
 #    container s’appellera 'spawning-pool'.
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "docker ps -a"
+    echo "$ docker ps -a"
 	docker ps -a
 	echo
-	echo "docker inspect --format '{{json .Mounts}}' spawning-pool | sed \"s/,/\n/g\" | tr -d \"[{}]\""
+	echo "$ docker inspect --format '{{json .Mounts}}' spawning-pool | sed \"s/,/\n/g\" | tr -d \"[{}]\""
 	docker inspect --format '{{json .Mounts}}' spawning-pool | sed "s/,/\n/g" | tr -d "[{}]"
 	echo
-	echo "docker exec -it spawning-pool /bin/sh -c 'find / -name \"zerglings\" 2>/dev/null; exit \$?'"
+	echo "$ docker exec -it spawning-pool /bin/sh -c 'find / -name \"zerglings\" 2>/dev/null; exit \$?'"
 	docker exec -it spawning-pool /bin/sh -c 'find / -name "zerglings" 2>/dev/null; exit $?'
+	echo
+	echo "$ docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool | grep MYSQL"
+	docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool | grep MYSQL
 	exit 1
 fi
 
-echo docker run -d --name spawning-pool \
+echo $ docker run -d --name spawning-pool \
 		--mount 'type=volume,src=hatchery,dst=/var/lib/mysql' \
 		--env MYSQL_DATABASE=zerglings \
 		--env MYSQL_ROOT_PASSWORD=Kerrigan \
@@ -36,6 +39,5 @@ docker run -d --name spawning-pool \
 
 # Sources:
 # https://docs.docker.com/engine/reference/commandline/run/
-# -d=false: Detached mode: Run container in the background, print new container id
-# --publish , -p		Publish a container’s port(s) to the host
-# --restart	no|on-failure|always	Restart policy to apply when a container exits
+# https://docs.docker.com/storage/volumes/#choose-the--v-or---mount-flag
+# https://hub.docker.com/_/mysql/

@@ -9,12 +9,12 @@
 #    main ces variables.
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "env | grep DOCKER"
+    echo "$ env | grep DOCKER"
     env | grep DOCKER
 	exit 1
 fi
 
-echo "eval \"\$(docker-machine env Char)\""
+echo "$ eval \"\$(docker-machine env Char)\""
 eval "$(docker-machine env Char)"
 exec $SHELL -i
 

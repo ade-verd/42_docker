@@ -8,7 +8,7 @@ if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 	exit 1
 fi
 
-echo "docker volume ls --filter driver=local"
+echo "$ docker volume ls --filter driver=local"
 docker volume ls --filter driver=local
 
 # Sources:

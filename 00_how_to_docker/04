@@ -5,12 +5,12 @@
 #    Docker Hub.
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "docker image ls"
+    echo "$ docker image ls"
     docker image ls
 	exit 1
 fi
 
-echo "docker pull hello-world"
+echo "$ docker pull hello-world"
 docker pull hello-world
 
 # Sources:

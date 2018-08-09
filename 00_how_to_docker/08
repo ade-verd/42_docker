@@ -6,12 +6,12 @@
 #	 le container se supprime à la fin de l’exécution du shell.
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "docker ps -a"
+    echo "$ docker ps -a"
     docker ps -a
 	exit 1
 fi
 
-echo "docker run -it --rm alpine"
+echo "$ docker run -it --rm alpine"
 docker run -it --rm alpine
 
 # Sources:

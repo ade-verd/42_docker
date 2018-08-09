@@ -16,7 +16,7 @@ URL="http://"$IP":"$PORT_VM
 if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "docker ps -a | grep \"overlord\|NAMES\""
+    echo "$ docker ps -a | grep \"overlord\|NAMES\""
     docker ps -a | grep "overlord\|NAMES"   
 	echo
 	read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
@@ -30,7 +30,7 @@ if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 	exit 1
 fi
 
-echo "docker run -d -p $PORT_VM:$PORT_CONT --name=overlord --restart always nginx"
+echo "$ docker run -d -p $PORT_VM:$PORT_CONT --name=overlord --restart always nginx"
 docker run -d -p $PORT_VM:$PORT_CONT --name=overlord --restart always nginx
 
 # Sources:
