@@ -4,7 +4,7 @@
 
 CONTAINER_ID=overlord
 
-if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "docker inspect $CONTAINER_ID | grep IP"
     docker inspect $CONTAINER_ID | grep IP
 	exit 1

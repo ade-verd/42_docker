@@ -3,7 +3,7 @@
 #    puissiez directement interagir avec le container via votre terminal et que
 #	 le container se supprime à la fin de l’exécution du shell.
 
-if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "docker ps -a"
     docker ps -a
 	exit 1

@@ -11,7 +11,7 @@ PORT_VM=5000
 PORT_CONT=80
 URL="http://"$IP":"$PORT_VM
 
-if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "docker ps -a | grep \"overlord\|NAMES\""
     docker ps -a | grep "overlord\|NAMES"   
 	echo

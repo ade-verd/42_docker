@@ -6,7 +6,7 @@
 #    et il vous est interdit d’utiliser le builtin de votre shell pour set à la
 #    main ces variables.
 
-if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "env | grep DOCKER"
     env | grep DOCKER
 	exit 1
