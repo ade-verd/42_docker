@@ -21,19 +21,16 @@ if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "$ docker ps -a"
     docker ps -a   
 	echo
-	read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
-	if [[ $REPLY =~ ^[cC]$ ]]; then
-		echo "\ncurl $URL"
-		curl $URL
-	elif [[ $REPLY =~ ^[oO]$ ]]; then
-		echo "\nopen $URL"
+	read -p "open [oO] $URL ? " -n 1 -r
+	if [[ $REPLY =~ ^[oOyY]$ ]]; then
+		printf "\nopen %s\n" $URL
 		$OPEN $URL
 	fi
 	exit 1
 fi
 
-echo "$ docker run -d --name lair --link spawning-pool -p $PORT_VM:$PORT_CONT wordpress"
-docker run -d --name lair --link spawning-pool -p $PORT_VM:$PORT_CONT wordpress
+echo "$ docker run -d --name lair --link spawning-pool:mysql -p $PORT_VM:$PORT_CONT wordpress"
+docker run -d --name lair --link spawning-pool:mysql -p $PORT_VM:$PORT_CONT wordpress
 
 # Sources:
 # https://docs.docker.com/engine/reference/run/
