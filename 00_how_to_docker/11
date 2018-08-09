@@ -3,3 +3,15 @@
 # 00_how_to_docker - 11
 # Q: Lister les volumes Docker crées sur la machine... je dis bien VOLUMES
 
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+    echo "No check here"
+	exit 1
+fi
+
+echo "docker volume ls --filter driver=local"
+docker volume ls --filter driver=local
+
+# Sources:
+# Storage: https://docs.docker.com/storage/
+# Volumes: https://docs.docker.com/storage/volumes/
+# docker volume --help
