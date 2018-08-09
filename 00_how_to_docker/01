@@ -2,7 +2,7 @@
 # Q: Créer une machine virtuelle avec 'docker-machine' utilisant le driver
 #    'virtualbox' et ayant pour nom 'Char'
 
-if [[ ("$1" = "-c") || ("$1" = "--check") ]]; then
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 	echo "VBoxManage list vms"
 	VBoxManage list vms
 	exit 1
