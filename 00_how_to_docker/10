@@ -3,14 +3,20 @@
 # 00_how_to_docker - 10
 # Q: Créer un volume 'hatchery'
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+NAME_VOL="hatchery"
+
+if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+	echo "$ docker volume rm $NAME_VOL"
+	docker volume rm $NAME_VOL
+	exit 1
+elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "$ docker volume ls"
     docker volume ls
 	exit 1
 fi
 
-echo "$ docker volume create --name hatchery"
-docker volume create --name hatchery
+echo "$ docker volume create --name $NAME_VOL"
+docker volume create --name $NAME_VOL
 
 # Sources:
 # Storage: https://docs.docker.com/storage/

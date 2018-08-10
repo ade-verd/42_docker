@@ -8,14 +8,20 @@
 #    et il vous est interdit d’utiliser le builtin de votre shell pour set à la
 #    main ces variables.
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+VM_NAME="Char"
+
+if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+    echo "$ eval $(docker-machine env --unset)"
+    eval $(docker-machine env --unset)
+	exit 1
+elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "$ env | grep DOCKER"
     env | grep DOCKER
 	exit 1
 fi
 
-echo "$ eval \"\$(docker-machine env Char)\""
-eval "$(docker-machine env Char)"
+echo "$ eval \"\$(docker-machine env $VM_NAME)\""
+eval "$(docker-machine env $VM_NAME)"
 exec $SHELL -i
 
 # Sources:

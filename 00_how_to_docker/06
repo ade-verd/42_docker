@@ -10,12 +10,17 @@
 OS=`uname`
 VM="Char"
 IP=$(docker-machine ip $VM)
+NAME_CONT="overlord"
 PORT_VM=5000
 PORT_CONT=80
 URL="http://"$IP":"$PORT_VM
 if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+	echo "$ docker stop $NAME_CONT && docker container rm $NAME_CONT"
+	docker stop $NAME_CONT && docker container rm $NAME_CONT
+	exit 1
+elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "$ docker ps -a | grep \"overlord\|NAMES\""
     docker ps -a | grep "overlord\|NAMES"   
 	echo
@@ -30,8 +35,17 @@ if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 	exit 1
 fi
 
-echo "$ docker run -d -p $PORT_VM:$PORT_CONT --name=overlord --restart always nginx"
-docker run -d -p $PORT_VM:$PORT_CONT --name=overlord --restart always nginx
+echo $ docker run -d \
+	--name=$NAME_CONT \
+	-p $PORT_VM:$PORT_CONT \
+	--restart always \
+	nginx
+
+docker run -d \
+	--name=$NAME_CONT \
+	-p $PORT_VM:$PORT_CONT \
+	--restart always \
+	nginx
 
 # Sources:
 # https://docs.docker.com/engine/reference/commandline/run/
