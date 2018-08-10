@@ -4,3 +4,13 @@
 # Q: Afficher l’ensemble des containers actuellement actifs sur la machine
 #    virtuelle 'Char'.
 
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+    echo "Use your eyes 👀"
+	exit 1
+fi
+
+echo "$ docker ps"
+docker ps
+
+# Sources:
+# https://docs.docker.com/engine/reference/commandline/ps/

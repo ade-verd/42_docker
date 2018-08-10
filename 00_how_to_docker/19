@@ -6,7 +6,7 @@
 #    du HOME de votre host, ainsi que le port 3000 bindé au port 3000 de votre
 #    machine virtuelle.
 #    Vous personnaliserez ce container de telle sorte que vous puissiez utiliser
-#    le micro- framework 'Flask' dans sa dernière version. Vous devrez faire en
+#    le micro-framework 'Flask' dans sa dernière version. Vous devrez faire en
 #    sorte qu’une page html renvoyant un "Hello World" dans des balises <h1>,
 #    soit servie par 'Flask'.
 #    Vous testerez la bonne mise en place de votre container, en accédant via 
@@ -14,3 +14,106 @@
 #    port 3000.
 #    Vous listerez aussi toutes les commandes nécessaires dans votre rendu.
 
+OS=`uname`
+VM="Char"
+IP=$(docker-machine ip $VM)
+NAME_CONT="Abathur"
+PORT_VM=3000
+PORT_CONT=3000
+URL="http://"$IP":"$PORT_VM
+if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
+HOST_FOLDER=~/$NAME_CONT
+CONT_FOLDER=/root
+HTML_PAGE="hello.py"
+
+check_args() {
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		echo "$ docker stop $NAME_CONT && docker container rm $NAME_CONT"
+		docker stop $NAME_CONT && docker container rm $NAME_CONT
+		exit 1
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+	    echo "$ docker ps -a"
+	    docker ps -a   
+		echo
+		read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
+		if [[ $REPLY =~ ^[oO]$ ]]; then
+			printf "\nopen %s\n" $URL
+			$OPEN $URL
+		elif [[ $REPLY =~ ^[cC]$ ]]; then
+			printf "\ncurl %s\n" $URL
+			curl $URL
+		fi
+		exit 1
+	fi
+}
+
+create_python_container() {
+	echo $ docker run -dit \
+			--name $NAME_CONT \
+			--volume $HOST_FOLDER:$CONT_FOLDER \
+			-p $PORT_VM:$PORT_CONT \
+			python:2-slim
+
+	docker run -dit \
+			--name $NAME_CONT \
+			-v $HOST_FOLDER:$CONT_FOLDER \
+			-p $PORT_VM:$PORT_CONT \
+			python:2-slim
+}
+
+install_flask_in_container() {
+	echo "$ docker exec $NAME_CONT /bin/bash -c \"pip install flask\""
+	docker exec $NAME_CONT /bin/bash -c "pip install flask"
+}
+
+create_html_page_helloworld() {
+	mkdir -p $HOST_FOLDER
+	cat > $HOST_FOLDER/$HTML_PAGE << EOM
+#!/usr/bin/env python
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+	return "<h1>Hello World</h1>"
+
+if __name__ == "__main__":
+	app.run(host="0.0.0.0", port="$PORT_CONT")
+EOM
+
+	echo "create and write $HOST_FOLDER/$HTML_PAGE"
+	echo "$ chmod 755 $HOST_FOLDER/$HTML_PAGE"
+	chmod 755 $HOST_FOLDER/$HTML_PAGE
+	echo "$ cat $HOST_FOLDER/$HTML_PAGE"
+	cat $HOST_FOLDER/$HTML_PAGE
+}
+
+run_flask_in_container() {
+	echo $ docker exec \
+		--env FLASK_APP=$CONT_FOLDER/$HTML_PAGE \
+		--env FLASK_RUN_PORT=$PORT_CONT \
+		$NAME_CONT \
+		flask run \
+		--host=0.0.0.0\
+		--port=3000
+
+	docker exec \
+		$NAME_CONT \
+		python $CONT_FOLDER/$HTML_PAGE
+}
+
+#		--env FLASK_RUN_PORT=$PORT_CONT \
+check_args "$@"
+create_python_container
+install_flask_in_container
+create_html_page_helloworld
+run_flask_in_container
+
+# Sources:
+# https://docs.docker.com/engine/reference/commandline/run/
+# https://hub.docker.com/_/python/
+# https://pip.pypa.io/en/stable/reference/pip_install/
+# https://openclassrooms.com/fr/courses/1654786-creez-vos-applications-web-avec-flask/1654912-presentation-de-flask
+# http://flask.pocoo.org/docs/1.0/quickstart/
+# http://flask.pocoo.org/docs/1.0/cli/

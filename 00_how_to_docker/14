@@ -26,10 +26,13 @@ elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "$ docker ps -a"
     docker ps -a   
 	echo
-	read -p "open [oO] $URL ? " -n 1 -r
+	read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
 	if [[ $REPLY =~ ^[oOyY]$ ]]; then
 		printf "\nopen %s\n" $URL
 		$OPEN $URL
+	elif [[ $REPLY =~ ^[cC]$ ]]; then
+		printf "\ncurl %s\n" $URL
+		curl $URL
 	fi
 	exit 1
 fi

@@ -4,3 +4,13 @@
 # Q: Consulter les logs en temps réel du container 'spawning-pool' sans executer
 #    son shell pour autant.
 
+if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+    echo "Use your eyes 👀"
+	exit 1
+fi
+
+echo "$ docker logs --follow spawning-pool"
+docker logs --follow spawning-pool
+
+# Sources:
+# https://docs.docker.com/engine/reference/commandline/logs/
