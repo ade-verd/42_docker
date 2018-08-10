@@ -9,12 +9,17 @@
 OS=`uname`
 VM="Char"
 IP=$(docker-machine ip $VM)
+NAME_CONT="roach-warden"
 PORT_VM=8081
 PORT_CONT=80
 URL="http://"$IP":"$PORT_VM
 if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+	echo "$ docker stop $NAME_CONT && docker container rm $NAME_CONT"
+	docker stop $NAME_CONT && docker container rm $NAME_CONT
+	exit 1
+elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "$ docker ps -a"
     docker ps -a   
 	echo
@@ -29,21 +34,19 @@ if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 	exit 1
 fi
 
-echo $ docker run \
-		-d --name roach-warden \
+echo $ docker run -d \
+		--name $NAME_CONT \
 		--link spawning-pool:db \
-		--env PMA_HOST=\$MYSQL_DATABASE \
 		-p $PORT_VM:$PORT_CONT \
 		phpmyadmin/phpmyadmin
 
 docker run -d \
-		--name roach-warden \
+		--name $NAME_CONT \
 		--link spawning-pool:db \
-		--env PMA_HOST=zerglings \
 		-p $PORT_VM:$PORT_CONT \
 		phpmyadmin/phpmyadmin
 
-#		--env PMA_HOST=$MYSQL_DATABASE \
+#		--link spawning-pool:db \
 # Sources:
 # https://docs.docker.com/engine/reference/run/
 # https://docs.docker.com/engine/reference/commandline/run/
