@@ -6,13 +6,13 @@
 
 CONTAINER_ID=overlord
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "$ docker inspect $CONTAINER_ID | grep IP"
     docker inspect $CONTAINER_ID | grep IP
 	exit 1
 fi
 
-echo "$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID"
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID 
 
 # Sources:

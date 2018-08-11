@@ -4,12 +4,13 @@
 # Q: Lancer le container 'hello-world' et faire en sorte que le container
 #    affiche bien son message d’accueil, puis le quitte.
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "Use your eyes 👀"
 	exit 1
 fi
 
-echo "$ docker run hello-world"
 docker run hello-world
 
 # Sources:

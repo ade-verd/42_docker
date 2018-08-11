@@ -10,32 +10,21 @@
 
 NAME_CONT="spawning-pool"
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	echo "$ docker stop $NAME_CONT && docker container rm $NAME_CONT"
 	docker stop $NAME_CONT && docker container rm $NAME_CONT
 	exit 1
 elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "$ docker ps -a"
 	docker ps -a
 	echo
-	echo "$ docker inspect --format '{{json .Mounts}}' spawning-pool | sed \"s/,/\n/g\" | tr -d \"[{}]\""
 	docker inspect --format '{{json .Mounts}}' spawning-pool | sed "s/,/\n/g" | tr -d "[{}]"
 	echo
-	echo "$ docker exec -it spawning-pool /bin/sh -c 'find / -name \"zerglings\" 2>/dev/null; exit \$?'"
 	docker exec -it spawning-pool /bin/sh -c 'find / -name "zerglings" 2>/dev/null; exit $?'
 	echo
-	echo "$ docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool | grep MYSQL"
 	docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool | grep MYSQL
 	exit 1
 fi
-
-echo $ docker run -d \
-		--name $NAME_CONT \
-		--mount 'type=volume,src=hatchery,dst=/var/lib/mysql' \
-		--env MYSQL_DATABASE=zerglings \
-		--env MYSQL_ROOT_PASSWORD=Kerrigan \
-		--restart on-failure \
-		mysql
 
 docker run -d \
 		--name $NAME_CONT \

@@ -6,17 +6,16 @@
 
 IMG="hello-world"
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	echo "$ docker image rm $IMG --force"
 	docker image rm $IMG --force
 	exit 1
 elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "$ docker image ls"
     docker image ls
 	exit 1
 fi
 
-echo "$ docker pull $IMG"
 docker pull $IMG
 
 # Sources:

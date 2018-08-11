@@ -22,53 +22,29 @@ PORT_VM=3000
 PORT_CONT=3000
 URL="http://"$IP":"$PORT_VM
 if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
-HOST_FOLDER=~/$NAME_CONT
+LOCAL_FOLDER=/tmp
+HOST_FOLDER=$HOME/$NAME_CONT
 CONT_FOLDER=/root
 HTML_PAGE="hello.py"
 
 check_args() {
 	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		echo "$ docker stop $NAME_CONT && docker container rm $NAME_CONT"
 		docker stop $NAME_CONT && docker container rm $NAME_CONT
 		exit 1
 	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-	    echo "$ docker ps -a"
 	    docker ps -a   
-		echo
-		read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
+		echo && read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
 		if [[ $REPLY =~ ^[oO]$ ]]; then
-			printf "\nopen %s\n" $URL
 			$OPEN $URL
 		elif [[ $REPLY =~ ^[cC]$ ]]; then
-			printf "\ncurl %s\n" $URL
 			curl $URL
 		fi
 		exit 1
 	fi
 }
 
-create_python_container() {
-	echo $ docker run -dit \
-			--name $NAME_CONT \
-			--volume $HOST_FOLDER:$CONT_FOLDER \
-			-p $PORT_VM:$PORT_CONT \
-			python:2-slim
-
-	docker run -dit \
-			--name $NAME_CONT \
-			-v $HOST_FOLDER:$CONT_FOLDER \
-			-p $PORT_VM:$PORT_CONT \
-			python:2-slim
-}
-
-install_flask_in_container() {
-	echo "$ docker exec $NAME_CONT /bin/bash -c \"pip install flask\""
-	docker exec $NAME_CONT /bin/bash -c "pip install flask"
-}
-
 create_html_page_helloworld() {
-	mkdir -p $HOST_FOLDER
-	cat > $HOST_FOLDER/$HTML_PAGE << EOM
+	cat > $LOCAL_FOLDER/$HTML_PAGE << EOM
 #!/usr/bin/env python
 
 from flask import Flask
@@ -81,33 +57,38 @@ def index():
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", port="$PORT_CONT")
 EOM
+	chmod 777 $LOCAL_FOLDER/$HTML_PAGE
+}
 
-	echo "create and write $HOST_FOLDER/$HTML_PAGE"
-	echo "$ chmod 755 $HOST_FOLDER/$HTML_PAGE"
-	chmod 755 $HOST_FOLDER/$HTML_PAGE
-	echo "$ cat $HOST_FOLDER/$HTML_PAGE"
-	cat $HOST_FOLDER/$HTML_PAGE
+copy_from_local_to_host() {
+	docker-machine ssh $VM mkdir -p $HOST_FOLDER
+	docker-machine scp $LOCAL_FOLDER/$HTML_PAGE $VM:$HOST_FOLDER
+}
+
+create_python_container() {
+	docker run -dt \
+			--name $NAME_CONT \
+			--mount type=bind,source=$HOST_FOLDER,target=$CONT_FOLDER \
+			-p $PORT_VM:$PORT_CONT \
+			python:2-slim
+}
+
+install_flask_in_container() {
+	docker exec $NAME_CONT /bin/bash -c "pip install flask"
 }
 
 run_flask_in_container() {
-	echo $ docker exec \
-		--env FLASK_APP=$CONT_FOLDER/$HTML_PAGE \
-		--env FLASK_RUN_PORT=$PORT_CONT \
-		$NAME_CONT \
-		flask run \
-		--host=0.0.0.0\
-		--port=3000
-
 	docker exec \
 		$NAME_CONT \
 		python $CONT_FOLDER/$HTML_PAGE
 }
 
-#		--env FLASK_RUN_PORT=$PORT_CONT \
+set -o xtrace -o errexit
 check_args "$@"
+create_html_page_helloworld
+copy_from_local_to_host
 create_python_container
 install_flask_in_container
-create_html_page_helloworld
 run_flask_in_container
 
 # Sources:
@@ -117,3 +98,4 @@ run_flask_in_container
 # https://openclassrooms.com/fr/courses/1654786-creez-vos-applications-web-avec-flask/1654912-presentation-de-flask
 # http://flask.pocoo.org/docs/1.0/quickstart/
 # http://flask.pocoo.org/docs/1.0/cli/
+# https://docs.docker.com/v17.09/machine/reference/scp/
