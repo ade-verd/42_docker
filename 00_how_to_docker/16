@@ -4,6 +4,8 @@
 # Q: Consulter les logs en temps réel du container 'spawning-pool' sans executer
 #    son shell pour autant.
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "Use your eyes 👀"
 	exit 1

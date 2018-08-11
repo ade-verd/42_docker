@@ -4,6 +4,8 @@
 # Q: Afficher l’ensemble des containers actuellement actifs sur la machine
 #    virtuelle 'Char'.
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "Use your eyes 👀"
 	exit 1

@@ -3,6 +3,8 @@
 # 00_how_to_docker - 18
 # Q: Relancer le container overlord
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
     echo "$ docker ps" 
 	docker ps

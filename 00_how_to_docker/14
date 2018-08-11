@@ -18,6 +18,8 @@ PORT_CONT=80
 URL="http://"$IP":"$PORT_VM
 if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
+set -o xtrace -o errexit
+
 if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
 	echo "$ docker stop $NAME_CONT && docker container rm $NAME_CONT"
 	docker stop $NAME_CONT && docker container rm $NAME_CONT
