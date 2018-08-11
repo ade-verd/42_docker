@@ -61,8 +61,13 @@ EOM
 }
 
 copy_from_local_to_host() {
-	docker-machine ssh $VM mkdir -p $HOST_FOLDER
-	docker-machine scp $LOCAL_FOLDER/$HTML_PAGE $VM:$HOST_FOLDER
+	if [ "$OS" = 'Linux' ]; then
+		docker-machine ssh $VM mkdir -p $HOST_FOLDER
+		docker-machine scp $LOCAL_FOLDER/$HTML_PAGE $VM:$HOST_FOLDER
+	elif [ "$OS" = 'Darwin' ]; then
+		mkdir -p $HOME_FOLDER
+		cp $LOCAL_FOLDER/$HTML_PAGE $HOST_FOLDER/$HTML_PAGE
+	fi
 }
 
 create_python_container() {
