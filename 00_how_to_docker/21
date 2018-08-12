@@ -4,3 +4,21 @@
 # Q: Créer une autre machine virtuelle avec 'docker-machine' utilisant le driver
 #    'virtualbox' et ayant pour nom 'Aiur'
 
+VM_NAME="Aiur"
+
+set -o xtrace -o errexit
+
+if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+	docker-machine stop $VM_NAME && docker-machine rm $VM_NAME
+	exit 1
+elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+	docker-machine ls
+	exit 1
+fi
+
+docker-machine create --driver virtualbox $VM_NAME
+
+# Sources:
+# https://docs.docker.com/machine/reference/create/
+# List all available virtual machines: 			`VBoxManage list vms`
+# List all running available virtual machines:	`VBoxManage list runningvms`

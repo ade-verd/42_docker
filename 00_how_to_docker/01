@@ -12,7 +12,7 @@ if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
 	docker-machine stop $VM_NAME && docker-machine rm $VM_NAME
 	exit 1
 elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-	VBoxManage list vms
+	docker-machine ls
 	exit 1
 fi
 
