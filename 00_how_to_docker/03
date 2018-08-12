@@ -10,17 +10,17 @@
 
 VM_NAME="Char"
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-    eval $(docker-machine env --unset)
+    (set -x; eval $(docker-machine env --unset))
 	exit 1
 elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    env | grep DOCKER
+    (set -x; env | grep DOCKER)
 	exit 1
 fi
 
-eval "$(docker-machine env $VM_NAME)"
+(set -x; eval "$(docker-machine env $VM_NAME)")
 exec $SHELL -i
 
 # Sources:

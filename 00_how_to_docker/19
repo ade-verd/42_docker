@@ -28,19 +28,21 @@ CONT_FOLDER=/root
 HTML_PAGE="hello.py"
 
 check_args() {
+	set +o xtrace
 	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		docker stop $NAME_CONT && docker container rm $NAME_CONT
+		(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT)
 		exit 1
 	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-	    docker ps -a   
+	    (set -x; docker ps -a)
 		echo && read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
 		if [[ $REPLY =~ ^[oO]$ ]]; then
-			$OPEN $URL
+			(set -x; $OPEN $URL)
 		elif [[ $REPLY =~ ^[cC]$ ]]; then
-			curl $URL
+			(set -x; curl $URL)
 		fi
 		exit 1
 	fi
+	set -o xtrace
 }
 
 create_html_page_helloworld() {
@@ -61,13 +63,15 @@ EOM
 }
 
 copy_from_local_to_host() {
+	set +o xtrace
 	if [ "$OS" = 'Linux' ]; then
-		docker-machine ssh $VM mkdir -p $HOST_FOLDER
-		docker-machine scp $LOCAL_FOLDER/$HTML_PAGE $VM:$HOST_FOLDER
+		(set -x; docker-machine ssh $VM mkdir -p $HOST_FOLDER)
+		(set -x; docker-machine scp $LOCAL_FOLDER/$HTML_PAGE $VM:$HOST_FOLDER)
 	elif [ "$OS" = 'Darwin' ]; then
-		mkdir -p $HOME_FOLDER
-		cp $LOCAL_FOLDER/$HTML_PAGE $HOST_FOLDER/$HTML_PAGE
+		(set -x; mkdir -p $HOME_FOLDER)
+		(set -x; cp $LOCAL_FOLDER/$HTML_PAGE $HOST_FOLDER/$HTML_PAGE)
 	fi
+	set -o xtrace
 }
 
 create_python_container() {
@@ -88,7 +92,8 @@ run_flask_in_container() {
 		python $CONT_FOLDER/$HTML_PAGE
 }
 
-set -o xtrace -o errexit
+set -o errexit
+set -o xtrace
 check_args "$@"
 create_html_page_helloworld
 copy_from_local_to_host

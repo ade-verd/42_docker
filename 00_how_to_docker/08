@@ -5,13 +5,14 @@
 #    puissiez directement interagir avec le container via votre terminal et que
 #	 le container se supprime à la fin de l’exécution du shell.
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    docker ps -a
+    (set -x; docker ps -a)
 	exit 1
 fi
 
+set -o xtrace
 docker run -it --rm alpine
 
 # Sources:

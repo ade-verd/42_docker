@@ -16,22 +16,23 @@ PORT_CONT=80
 URL="http://"$IP":"$PORT_VM
 if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	docker stop $NAME_CONT && docker container rm $NAME_CONT
+	(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT)
 	exit 1
 elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    docker ps -a | grep "overlord\|NAMES"   
+    (set -x; docker ps -a | grep "overlord\|NAMES")
 	echo && read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
 	if [[ $REPLY =~ ^[cC]$ ]]; then
-		curl $URL
+		(set -x; curl $URL)
 	elif [[ $REPLY =~ ^[oO]$ ]]; then
-		$OPEN $URL
+		(set -x; $OPEN $URL)
 	fi
 	exit 1
 fi
 
+set -o xtrace
 docker run -d \
 	--name=$NAME_CONT \
 	-p $PORT_VM:$PORT_CONT \

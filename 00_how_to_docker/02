@@ -3,13 +3,14 @@
 # 00_how_to_docker - 02
 # Q: Récupérer l’adresse IP de la machine virtuelle 'Char'
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    VBoxManage guestproperty enumerate Char | grep IP
+    (set -x; VBoxManage guestproperty enumerate Char | grep IP)
 	exit 1
 fi
 
+set -o xtrace
 docker-machine ip Char
 
 # Sources:

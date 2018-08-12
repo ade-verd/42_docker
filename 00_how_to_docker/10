@@ -5,16 +5,17 @@
 
 NAME_VOL="hatchery"
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	docker volume rm $NAME_VOL
+	(set -x; docker volume rm $NAME_VOL)
 	exit 1
 elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    docker volume ls
+    (set -x; docker volume ls)
 	exit 1
 fi
 
+set -o xtrace
 docker volume create --name $NAME_VOL
 
 # Sources:

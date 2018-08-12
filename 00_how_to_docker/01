@@ -6,16 +6,17 @@
 
 VM_NAME="Char"
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	docker-machine stop $VM_NAME && docker-machine rm $VM_NAME
+	(set -x; docker-machine stop $VM_NAME && docker-machine rm $VM_NAME)
 	exit 1
 elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-	docker-machine ls
+	(set -x; docker-machine ls)
 	exit 1
 fi
 
+set -o xtrace
 docker-machine create --driver virtualbox $VM_NAME
 
 # Sources:

@@ -3,3 +3,21 @@
 # 00_how_to_docker - 23
 # Q: Créer un réseau interne de type 'overlay' que vous nommerez 'overmind'.
 
+NETWORK_NAME="overmind"
+
+set -o errexit
+
+if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+	(set -x; docker network rm $NETWORK_NAME)
+	exit 1
+elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+	(set -x; docker network ls)
+	exit 1
+fi
+
+set -o xtrace
+docker network create --driver overlay $NETWORK_NAME
+
+# Sources:
+# https://docs.docker.com/network/network-tutorial-overlay/
+# https://docs.docker.com/engine/reference/commandline/network_create/

@@ -3,15 +3,14 @@
 # 00_how_to_docker - 18
 # Q: Relancer le container overlord
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "$ docker ps" 
-	docker ps
+	(set -x; docker ps)
 	exit 1
 fi
 
-echo "$ docker container restart overlord"
+set -o xtrace
 docker container restart overlord
 
 # Sources:

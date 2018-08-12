@@ -6,16 +6,17 @@
 VM="Char"
 IP=$(docker-machine ip $VM)
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-	docker-machine ssh $VM "docker swarm leave --force"
+	(set -x; docker-machine ssh $VM "docker swarm leave --force")
 	exit 1
 elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-	docker-machine ssh $VM "docker node ls"
+	(set -x; docker-machine ssh $VM "docker node ls")
 	exit 1
 fi
 
+set -o xtrace
 docker-machine ssh $VM "docker swarm init --advertise-addr $IP"
 
 # Sources:

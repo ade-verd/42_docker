@@ -5,15 +5,14 @@
 #    seule commande, histoire d’être sûr que vous avez bien configuré votre
 #	 container.
 
-set -o xtrace -o errexit
+set -o errexit
 
 if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-	echo "$ docker exec -it spawning-pool /bin/sh -c 'env; exit \$?'"
-	docker exec -it spawning-pool /bin/sh -c 'env; exit $?'
+	(set -x; docker exec -it spawning-pool /bin/sh -c 'env; exit $?')
 	exit 1
 fi
 
-echo "$ docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool"
+set -o xtrace
 docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool
 
 # Sources:
