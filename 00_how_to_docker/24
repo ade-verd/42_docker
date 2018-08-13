@@ -6,3 +6,32 @@
 #	 du service 'RabbitMQ', et ceux-ci seront à votre libre convenance.
 #	 Ce service sera sur le reseau 'overmind'
 
+NAME_CONT="orbital-command"
+NETWORK="overmind"
+USER="user"
+PASSWORD="password"
+
+set -o errexit
+
+if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+	(set -x; docker service rm $NAME_CONT)
+	exit 1
+elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+	(set -x; docker service ls)
+	echo
+	(set -x; docker network inspect $NETWORK | grep Name)
+	exit 1
+fi
+
+set -o xtrace
+docker service create \
+	--name $NAME_CONT \
+	--network $NETWORK \
+	--env RABBITMQ_DEFAULT_USER=$USER \
+	--env RABBITMQ_DEFAULT_PASS=$PASSWORD \
+	rabbitmq
+
+# Sources:
+# https://docs.docker.com/get-started/part3/
+# https://docs.docker.com/engine/reference/commandline/service_create/
+# https://hub.docker.com/_/rabbitmq/
