@@ -7,20 +7,18 @@
 set -o errexit
 
 if [ "$#" -gt 0 ]; then
-	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		(set -x; )
-	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-		(set -x; )
+	if [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; docker ps -a)
 	else
 		echo Usage: "${0} [OPTION]"
-		echo "-u   --undo"
 		echo "-c   --check"
 	fi
 	exit 1
 fi
 
 set -o xtrace
-
+docker rm --force $(docker ps -a -q)
 
 # Sources:
-#
+# docker rm --help
+# Delete all containers : 	`docker rm $(docker ps -a -q)`

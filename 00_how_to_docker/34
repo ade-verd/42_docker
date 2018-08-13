@@ -3,23 +3,21 @@
 # 00_how_to_docker - 34
 # Q: Supprimer la machine virtuelle 'Aiur' autrement qu’avec un 'rm -rf'
 
-set -o errexit
+VM_NAME="Aiur"
 
 if [ "$#" -gt 0 ]; then
-	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		(set -x; )
-	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-		(set -x; )
+	if [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; docker-machine ls)
 	else
 		echo Usage: "${0} [OPTION]"
-		echo "-u   --undo"
 		echo "-c   --check"
 	fi
 	exit 1
 fi
 
 set -o xtrace
-
+docker-machine stop $VM_NAME
+docker-machine rm -y $VM_NAME
 
 # Sources:
-#
+# docker-machine --help

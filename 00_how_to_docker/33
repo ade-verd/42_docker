@@ -7,20 +7,18 @@
 set -o errexit
 
 if [ "$#" -gt 0 ]; then
-	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		(set -x; )
-	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-		(set -x; )
+	if [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; docker images --all)
 	else
 		echo Usage: "${0} [OPTION]"
-		echo "-u   --undo"
 		echo "-c   --check"
 	fi
 	exit 1
 fi
 
 set -o xtrace
-
+docker rmi $(docker images -q)
 
 # Sources:
-#
+# docker rmi --help
+# Delete all images : 		`docker rmi $(docker images -q)`
