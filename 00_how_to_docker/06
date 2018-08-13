@@ -18,16 +18,21 @@ if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
 set -o errexit
 
-if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT)
-	exit 1
-elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    (set -x; docker ps -a | grep "overlord\|NAMES")
-	echo && read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
-	if [[ $REPLY =~ ^[cC]$ ]]; then
-		(set -x; curl $URL)
-	elif [[ $REPLY =~ ^[oO]$ ]]; then
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+		(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT)
+	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+	    (set -x; docker ps -a | grep "overlord\|NAMES")
+		echo && read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
+		if [[ $REPLY =~ ^[cC]$ ]]; then
+			(set -x; curl $URL)
+		elif [[ $REPLY =~ ^[oO]$ ]]; then
 		(set -x; $OPEN $URL)
+		fi
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
 	fi
 	exit 1
 fi

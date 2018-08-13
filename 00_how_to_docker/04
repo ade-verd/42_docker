@@ -8,11 +8,16 @@ IMG="hello-world"
 
 set -o errexit
 
-if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	(set -x; docker image rm $IMG --force)
-	exit 1
-elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    (set -x; docker image ls)
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+		(set -x; docker image rm $IMG --force)
+	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+	    (set -x; docker image ls)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

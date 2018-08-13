@@ -7,8 +7,13 @@
 
 set -o errexit
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    (set -x; docker ps -a)
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+	    (set -x; docker ps -a)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

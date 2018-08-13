@@ -8,8 +8,13 @@ CONTAINER_ID=overlord
 
 set -o errexit
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    (set -x; docker inspect $CONTAINER_ID | grep IP)
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+	    (set -x; docker inspect $CONTAINER_ID | grep IP)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

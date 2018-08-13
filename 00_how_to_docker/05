@@ -6,7 +6,8 @@
 
 set -o errexit
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+if [ "$#" -gt 0 ]; then
+	echo Usage: "${0} [OPTION]"
     echo "Use your eyes 👀"
 	exit 1
 fi

@@ -12,11 +12,16 @@ VM_NAME="Char"
 
 set -o errexit
 
-if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-    (set -x; eval $(docker-machine env --unset))
-	exit 1
-elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    (set -x; env | grep DOCKER)
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+	    (set -x; eval $(docker-machine env --unset))
+	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+	    (set -x; env | grep DOCKER)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

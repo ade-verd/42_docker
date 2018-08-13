@@ -8,11 +8,16 @@ VM_NAME="Char"
 
 set -o errexit
 
-if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	(set -x; docker-machine stop $VM_NAME && docker-machine rm $VM_NAME)
-	exit 1
-elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-	(set -x; docker-machine ls)
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+		(set -x; docker-machine stop $VM_NAME && docker-machine rm $VM_NAME)
+	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+		(set -x; docker-machine ls)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

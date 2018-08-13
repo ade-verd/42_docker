@@ -11,10 +11,15 @@
 F_NO="\033[0m"
 F_REV="\033[7m"
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-	echo "You can check with this commands:"
-	printf "%b%s%b\n" $F_REV "$ dpkg -l | grep '^.i' | grep gcc" $F_NO
-	printf "%b%s%b\n" $F_REV "$ dpkg -l | grep '^.i' | grep git" $F_NO
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+		echo "You can check with this commands:"
+		printf "%b%s%b\n" $F_REV "$ dpkg -l | grep '^.i' | grep gcc" $F_NO
+		printf "%b%s%b\n" $F_REV "$ dpkg -l | grep '^.i' | grep git" $F_NO
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 
