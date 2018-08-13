@@ -12,15 +12,19 @@ WORKER_TOKEN=$(docker-machine ssh $SWARM_AGENT_MASTER "docker swarm join-token w
 
 set -o errexit
 
-if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-	(set -x; docker-machine ssh $SWARM_AGENT_SLAVE "docker swarm leave --force")
-	(set -x; docker-machine ssh $SWARM_AGENT_MASTER "docker node rm --force $SWARM_AGENT_SLAVE")
-	exit 1
-elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-	(set -x; docker-machine ssh $SWARM_AGENT_MASTER "docker node ls")
+if [ "$#" -gt 0 ]; then
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		(set -x; docker-machine ssh $SWARM_AGENT_SLAVE "docker swarm leave --force")
+		(set -x; docker-machine ssh $SWARM_AGENT_MASTER "docker node rm --force $SWARM_AGENT_SLAVE")
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; docker-machine ssh $SWARM_AGENT_MASTER "docker node ls")
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
-
 set -o xtrace
 docker-machine ssh $SWARM_AGENT_SLAVE \
 	"docker swarm join --token $WORKER_TOKEN $IP_MANAGER:2377"

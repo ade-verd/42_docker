@@ -13,13 +13,18 @@ PASSWORD="password"
 
 set -o errexit
 
-if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-	(set -x; docker service rm $NAME_CONT)
-	exit 1
-elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-	(set -x; docker service ls)
-	echo
-	(set -x; docker network inspect $NETWORK | grep Name)
+if [ "$#" -gt 0 ]; then
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		(set -x; docker service rm $NAME_CONT)
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; docker service ls)
+		echo
+		(set -x; docker network inspect $NETWORK | grep Name)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

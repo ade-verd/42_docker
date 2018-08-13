@@ -12,17 +12,22 @@ NAME_CONT="spawning-pool"
 
 set -o errexit
 
-if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-	(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT
-	exit 1
-elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-	(set -x; docker ps -a)
-	echo
-	(set -x; docker inspect --format '{{json .Mounts}}' spawning-pool | sed "s/,/\n/g" | tr -d "[{}]")
-	echo
-	(set -x; docker exec -it spawning-pool /bin/sh -c 'find / -name "zerglings" 2>/dev/null; exit $?')
-	echo
-	(set -x; docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool | grep MYSQL)
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
+		(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT
+	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+		(set -x; docker ps -a)
+		echo
+		(set -x; docker inspect --format '{{json .Mounts}}' spawning-pool | sed "s/,/\n/g" | tr -d "[{}]")
+		echo
+		(set -x; docker exec -it spawning-pool /bin/sh -c 'find / -name "zerglings" 2>/dev/null; exit $?')
+		echo
+		(set -x; docker inspect --format='{{range .Config.Env}}{{println .}}{{end}}' spawning-pool | grep MYSQL)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

@@ -8,11 +8,17 @@ IP=$(docker-machine ip $VM)
 
 set -o errexit
 
-if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-	(set -x; docker-machine ssh $VM "docker swarm leave --force")
-	exit 1
-elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-	(set -x; docker-machine ssh $VM "docker node ls")
+if [ "$#" -gt 0 ]; then
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		(set -x; docker-machine ssh $VM "docker swarm leave --force")
+		exit 1
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; docker-machine ssh $VM "docker node ls")
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

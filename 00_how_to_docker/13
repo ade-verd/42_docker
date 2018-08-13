@@ -7,8 +7,13 @@
 
 set -o errexit
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-	(set -x; docker exec -it spawning-pool /bin/sh -c 'env; exit $?')
+if [ "$#" -gt 0 ]; then
+	if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
+		(set -x; docker exec -it spawning-pool /bin/sh -c 'env; exit $?')
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-c   --check"
+	fi
 	exit 1
 fi
 

@@ -3,13 +3,14 @@
 # 00_how_to_docker - 11
 # Q: Lister les volumes Docker crées sur la machine... je dis bien VOLUMES
 
-set -o xtrace -o errexit
+set -o errexit
 
-if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
-    echo "No check here"
+if [ "$#" -gt 0 ]; then
+	echo Usage: "${0} [OPTION]"
 	exit 1
 fi
 
+set -o xtrace
 docker volume ls --filter driver=local
 
 # Sources:
