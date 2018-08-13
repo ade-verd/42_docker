@@ -6,15 +6,24 @@
 #	 pour les éliminer...
 #	 Lancer un service '42school/marine-squad' en 2 repliques, et faites en sorte
 #	 que le service fonctionne (se référer à la doc fournie dans hub.docker.com)
-#	 Ce service s’appellera ... 'marines' et sera sur le 'reseau overmind'
+#	 Ce service s’appellera ... 'marines' et sera sur le reseau 'overmind'
+
+NAME_CONT="marines"
+NETWORK="overmind"
+USER="user"
+PASSWORD="password"
 
 set -o errexit
 
 if [ "$#" -gt 0 ]; then
 	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		(set -x; )
+		(set -x; docker service rm $NAME_CONT)
 	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-		(set -x; )
+		(set -x; docker service ls)
+		echo
+		(set -x; docker service ps $NAME_CONT)
+		echo
+		(set -x; docker network inspect $NETWORK | grep Name)
 	else
 		echo Usage: "${0} [OPTION]"
 		echo "-u   --undo"
@@ -23,8 +32,20 @@ if [ "$#" -gt 0 ]; then
 	exit 1
 fi
 
-set -o xtrace
-
+if [ $(docker service ls | grep -c orbital-command) -eq 0 ]; then
+	echo "Error: You must have an orbital-command running on your host or swarm, accessible with the same name into your network."
+	echo "Please check ./24"
+else
+	set -o xtrace
+	docker service create \
+		--name $NAME_CONT \
+		--network $NETWORK \
+		--replicas 2 \
+		--env OC_USERNAME=$USER \
+		--env OC_PASSWD=$PASSWORD \
+		42school/marine-squad:latest
+fi
 
 # Sources:
-#
+# https://hub.docker.com/r/42school/marine-squad/
+# https://docs.docker.com/engine/reference/commandline/service_create/#options

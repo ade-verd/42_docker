@@ -7,7 +7,7 @@
 set -o errexit
 
 if [ "$#" -gt 0 ]; then
-	echo Usage: "${0} [OPTION]"
+	echo Usage: "${0}"
     echo "Use your eyes 👀"
 	exit 1
 fi

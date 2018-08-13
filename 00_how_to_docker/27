@@ -6,20 +6,13 @@
 set -o errexit
 
 if [ "$#" -gt 0 ]; then
-	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		(set -x; )
-	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-		(set -x; )
-	else
-		echo Usage: "${0} [OPTION]"
-		echo "-u   --undo"
-		echo "-c   --check"
-	fi
+	echo Usage: "${0}"
 	exit 1
 fi
 
 set -o xtrace
-
+docker service logs --follow engineering-bay
 
 # Sources:
-#
+# docker service --help
+# docker service logs --help

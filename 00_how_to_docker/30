@@ -5,23 +5,30 @@
 #    jamais assez de Marines pour annihiler du Zerg. (Pensez aussi à regarder
 #    les tâches et les logs du service, vous allez voir, c’est marrant).
 
+SERVICE="marines"
+
 set -o errexit
 
 if [ "$#" -gt 0 ]; then
 	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
-		(set -x; )
+		(set -x; docker service update --rollback $SERVICE)
 	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
-		(set -x; )
+		(set -x; docker service ls)
+		echo
+		(set -x; docker service ps $SERVICE)
+	elif [ "${1}" = "-l" ] || [ "${1}" = "--logs" ]; then
+		(set -x; docker service logs --follow $SERVICE)
 	else
 		echo Usage: "${0} [OPTION]"
 		echo "-u   --undo"
 		echo "-c   --check"
+		echo "-l   --logs"
 	fi
 	exit 1
 fi
 
 set -o xtrace
-
+docker service update --replicas=20 $SERVICE
 
 # Sources:
-#
+# https://docs.docker.com/engine/reference/commandline/service_update
