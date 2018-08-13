@@ -2,7 +2,6 @@ FROM alpine:latest
 
 RUN apk update && apk add vim
 
-CMD [ "-D", "FOREGROUND" ]
 CMD [ "vim" ]
 
 # Sources:
