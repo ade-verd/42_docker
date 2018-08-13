@@ -4,3 +4,23 @@
 # Q: Forcer l’arrêt et supprimer l’ensemble des services sur le swarm local,
 #    en une seule commande
 
+set -o errexit
+
+if [ "$#" -gt 0 ]; then
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		(set -x; )
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; )
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
+	exit 1
+fi
+
+set -o xtrace
+
+
+# Sources:
+#

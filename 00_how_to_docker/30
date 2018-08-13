@@ -5,3 +5,23 @@
 #    jamais assez de Marines pour annihiler du Zerg. (Pensez aussi à regarder
 #    les tâches et les logs du service, vous allez voir, c’est marrant).
 
+set -o errexit
+
+if [ "$#" -gt 0 ]; then
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		(set -x; )
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; )
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
+	exit 1
+fi
+
+set -o xtrace
+
+
+# Sources:
+#

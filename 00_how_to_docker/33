@@ -4,3 +4,23 @@
 # Q: Supprimer l’ensemble des images de containers stocké sur la machine virtuelle
 #    'Char', en une seule commande aussi.
 
+set -o errexit
+
+if [ "$#" -gt 0 ]; then
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		(set -x; )
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; )
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
+	exit 1
+fi
+
+set -o xtrace
+
+
+# Sources:
+#

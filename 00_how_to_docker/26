@@ -5,3 +5,40 @@
 #    sorte que le service fonctionne (se référer à la doc fournie dans 'hub.docker.com'). 
 #    Ce service s’appellera 'engineering-bay' et sera sur le reseau 'overmind'
 
+NAME_CONT="engineering-bay"
+NETWORK="overmind"
+USER="user"
+PASSWORD="password"
+
+set -o errexit
+
+if [ "$#" -gt 0 ]; then
+	if [ "${1}" = "-u" ] || [ "${1}" = "--undo" ]; then
+		(set -x; docker service rm $NAME_CONT)
+	elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
+		(set -x; docker service ls)
+		echo
+		(set -x; docker network inspect $NETWORK | grep Name)
+	else
+		echo Usage: "${0} [OPTION]"
+		echo "-u   --undo"
+		echo "-c   --check"
+	fi
+	exit 1
+fi
+
+if [ $(docker service ls | grep orbital-command) -eq 0 ]; then
+	echo "You must have an orbital-command running on your host or swarm, accessible with the same name into your network."
+	echo "Please check ./24"
+else
+	set -o xtrace
+	docker service create \
+		--name $NAME_CONT \
+		--network $NETWORK \
+		--env OC_USERNAME=$USER \
+		--env OC_PASSWD=$PASSWORD \
+		42school/engineering-bay:latest
+fi
+
+# Sources:
+# https://hub.docker.com/r/42school/engineering-bay/
