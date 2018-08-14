@@ -1,9 +1,14 @@
 IMG="teamspeak:ex01"
 CONTAINER_NAME="teamspeak_server"
 LOCATION=./
+PORTS=-p 9987:9987/udp -p 10011:10011 -p 30033:30033
+VM=Char
+IP=$(shell docker-machine ip $(VM))
+URL_TS3=ts3server://$(IP)
+URL_HTML=http://www.teamspeak.com/invite/$(IP)
+OS=`uname`
 
-
-.PHONY: all, build, check, run, clean, fclean
+.PHONY: all, build, check, get-info, open, run, clean, fclean
 
 all: build run
 
@@ -11,7 +16,10 @@ build:
 	docker build -t $(IMG) $(LOCATION)
 
 run:
-	docker run -it --name $(CONTAINER_NAME) $(IMG)
+	#docker run -dit ...
+	docker run -dit --name $(CONTAINER_NAME) $(PORTS) --rm $(IMG) \
+	&& ./getinfo.sh \
+	&& ./open.sh
 
 check:
 	docker image ls
