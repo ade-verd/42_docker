@@ -1,16 +1,24 @@
 FROM debian:latest
 
-ENV TS3_VERSION=3.3.0
+# Teamspeak Server version
+ENV TS3_VERSION 3.3.0
 
-RUN apt-get update -y && apt-get upgrade \
-	&& apt-get install -y mariadb-client mariadb-server
+# Update, upgrade and install packages. 
+# Clean cache and useless packages
+RUN 	apt-get update -y \
+	&& apt-get upgrade -y \
+	&& apt-get install -y \
+		curl \
+		bzip2 \
+	&& apt-get autoremove -y \
+	&& apt-get clean 
 
-ENV MYSQL_ROOT_PASSWORD toor
+RUN curl -fsSL http://dl.4players.de/ts/releases/${TS3_VERSION}/teamspeak3-server_linux_amd64-${TS3_VERSION}.tar.bz2 | tar -jxvf - -C /opt/ && \
+	mv /opt/teamspeak3-server_linux_amd64 /opt/teamspeak3
 
-http://dl.4players.de/ts/releases/3.3.0/teamspeak3-server_linux_amd64-$TS3_VERSION.tar.bz2
+# Set the OS environment variable TS3SERVER_LICENSE to "accept" (cf. ./doc/quickstart.txt)
+ENV TS3SERVER_LICENSE accept
 
 
-CMD [ "vim" ]
 
-# Sources:
-# https://www.digitalocean.com/community/questions/tutorial-setup-teamspeak-server-debian-9-3
+

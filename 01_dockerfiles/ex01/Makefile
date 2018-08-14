@@ -1,5 +1,5 @@
-IMG="alpivim:ex00"
-CONTAINER_NAME="alpivim"
+IMG="teamspeak:ex01"
+CONTAINER_NAME="teamspeak_server"
 LOCATION=./
 
 
