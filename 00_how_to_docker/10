@@ -9,7 +9,8 @@ set -o errexit
 
 if [ "$#" -gt 0 ]; then
 	if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-		(set -x; docker volume rm $NAME_VOL)
+		(set -x; docker volume rm $NAME_VOL --force)
+		(set -x; docker volume prune --force)
 	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 	    (set -x; docker volume ls)
 	else

@@ -9,6 +9,7 @@
 #    container s’appellera 'spawning-pool'.
 
 NAME_CONT="spawning-pool"
+NETWORK_NAME="sql_network"
 
 set -o errexit
 
@@ -32,13 +33,13 @@ if [ "$#" -gt 0 ]; then
 fi
 
 set -o xtrace
-docker run -d \
+docker run -dit \
 		--name $NAME_CONT \
 		--mount 'type=volume,src=hatchery,dst=/var/lib/mysql' \
 		--env MYSQL_DATABASE=zerglings \
 		--env MYSQL_ROOT_PASSWORD=Kerrigan \
 		--restart on-failure \
-		mysql
+		mysql:5.7
 
 # Sources:
 # https://docs.docker.com/engine/reference/commandline/run/

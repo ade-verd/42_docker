@@ -40,10 +40,11 @@ if [ "$#" -gt 0 ]; then
 fi
 
 set -o xtrace
-docker run -d \
+docker run -dit \
 		--name $NAME_CONT \
 		--link spawning-pool:mysql \
 		-p $PORT_VM:$PORT_CONT \
+		--restart on-failure \
 		wordpress
 
 # Sources:
