@@ -14,7 +14,7 @@ set -o errexit
 
 if [ "$#" -gt 0 ]; then
 	if [ "$1" = "-u" ] || [ "$1" = "--undo" ]; then
-		(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT
+		(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT)
 	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 		(set -x; docker ps -a)
 		echo
