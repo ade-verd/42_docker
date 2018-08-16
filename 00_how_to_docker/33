@@ -17,7 +17,7 @@ if [ "$#" -gt 0 ]; then
 fi
 
 set -o xtrace
-docker rmi $(docker images -q)
+docker rmi --force $(docker images -q)
 
 # Sources:
 # docker rmi --help
