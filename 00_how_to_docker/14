@@ -25,6 +25,10 @@ if [ "$#" -gt 0 ]; then
 		(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT)
 	elif [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 	    (set -x; docker ps -a)
+		echo
+		(set -x; docker exec -it $NAME_CONT bash -c env | grep ENV)
+		echo
+		(set -x; docker exec -it $NAME_CONT cat wp-config.php | grep "SQL\|DB_")
 		echo && read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
 		if [[ $REPLY =~ ^[oOyY]$ ]]; then
 			(set -x; $OPEN $URL)
@@ -40,7 +44,7 @@ if [ "$#" -gt 0 ]; then
 fi
 
 set -o xtrace
-docker run -dit \
+docker run -d \
 		--name $NAME_CONT \
 		--link spawning-pool:mysql \
 		-p $PORT_VM:$PORT_CONT \

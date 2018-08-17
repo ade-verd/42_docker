@@ -33,7 +33,7 @@ if [ "$#" -gt 0 ]; then
 fi
 
 set -o xtrace
-docker run -dit \
+docker run -d \
 		--name $NAME_CONT \
 		--mount 'type=volume,src=hatchery,dst=/var/lib/mysql' \
 		--env MYSQL_DATABASE=zerglings \
