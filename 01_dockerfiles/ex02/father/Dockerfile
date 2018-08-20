@@ -1,5 +1,5 @@
 FROM ruby
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs sqlite3
+RUN apt-get -qq update && apt-get -qq install -y build-essential libpq-dev nodejs sqlite3
 
 ONBUILD COPY my_app /opt/app
 ONBUILD WORKDIR /opt/app
