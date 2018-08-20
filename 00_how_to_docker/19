@@ -34,6 +34,8 @@ check_args() {
 			(set -x; docker stop $NAME_CONT && docker container rm $NAME_CONT)
 		elif [ "${1}" = "-c" ] || [ "${1}" = "--check" ]; then
 		    (set -x; docker ps -a)
+			echo
+			(set -x; docker inspect --format '{{json .Mounts}}' $NAME_CONT | tr ',' '\n' | tr -d "[{}]")
 			echo && read -p "open [oO] or curl [cC] $URL ? " -n 1 -r
 			if [[ $REPLY =~ ^[oO]$ ]]; then
 				(set -x; $OPEN $URL)
@@ -73,7 +75,7 @@ copy_from_local_to_host() {
 		(set -x; docker-machine ssh $VM mkdir -p $HOST_FOLDER)
 		(set -x; docker-machine scp $LOCAL_FOLDER/$HTML_PAGE $VM:$HOST_FOLDER)
 	elif [ "$OS" = 'Darwin' ]; then
-		(set -x; mkdir -p $HOME_FOLDER)
+		(set -x; mkdir -p $HOST_FOLDER)
 		(set -x; cp $LOCAL_FOLDER/$HTML_PAGE $HOST_FOLDER/$HTML_PAGE)
 	fi
 	set -o xtrace
