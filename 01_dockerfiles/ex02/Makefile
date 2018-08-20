@@ -8,9 +8,11 @@ VM=Char
 IP=$(shell docker-machine ip $(VM))
 if [ "$(shell uname)" = 'Linux' ]; then OPEN=xdg-open ; else OPEN=open; fi
 
-.PHONY: all, build_father, build_son, check, logs, run, clean, fclean
+.PHONY: all, build_father, build, build_son, check, logs, run, clean, fclean
 
-all: build_father build_son run
+all: build run
+
+build: build_father build_son
 
 build_father:
 	docker build -t $(IMG_FATHER) $(LOCATION_FATHER)

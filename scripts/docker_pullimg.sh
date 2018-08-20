@@ -4,7 +4,6 @@ VM="Char"
 
 set -x
 
-eval $(docker-machine env $VM)
 docker pull hello-world:latest
 docker pull nginx:latest
 docker pull alpine:latest

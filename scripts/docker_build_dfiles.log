@@ -1,0 +1,473 @@
+docker build -t "alpivim:ex00" ./
+Sending build context to Docker daemon  3.072kB
+Step 1/3 : FROM alpine:latest
+ ---> 11cd0b38bc3c
+Step 2/3 : RUN apk update && apk add vim
+ ---> Using cache
+ ---> 622fc19b9893
+Step 3/3 : CMD [ "vim" ]
+ ---> Using cache
+ ---> 5379a1fe1cdf
+Successfully built 5379a1fe1cdf
+Successfully tagged alpivim:ex00
+docker build -t "teamspeak:ex01" ./
+Sending build context to Docker daemon  294.4kB
+Step 1/7 : FROM debian:latest
+ ---> 3bbb526d2608
+Step 2/7 : ENV TS3_VERSION 3.3.0
+ ---> Using cache
+ ---> e8b98eea7304
+Step 3/7 : RUN 	apt-get update -y 	&& apt-get upgrade -y 	&& apt-get install -y 		curl 		bzip2 	&& apt-get autoremove -y 	&& apt-get clean
+ ---> Using cache
+ ---> d68b3dd3ecb5
+Step 4/7 : RUN curl -fsSL http://dl.4players.de/ts/releases/${TS3_VERSION}/teamspeak3-server_linux_amd64-${TS3_VERSION}.tar.bz2 | tar -jxvf - -C /opt/ 	&& mv /opt/teamspeak3-server_linux_amd64 /opt/teamspeak3
+ ---> Using cache
+ ---> d6524cdf2db7
+Step 5/7 : EXPOSE 	9987/udp 10011 30033
+ ---> Using cache
+ ---> 52b4c1dcbced
+Step 6/7 : ENV TS3SERVER_LICENSE=accept 	LD_LIBRARY_PATH="/opt/teamspeak3 /opt/teamspeak3/ts3server"
+ ---> Using cache
+ ---> d47cd7c71c3f
+Step 7/7 : CMD [ "./opt/teamspeak3/ts3server_minimal_runscript.sh"]
+ ---> Using cache
+ ---> d0a946da98fc
+Successfully built d0a946da98fc
+Successfully tagged teamspeak:ex01
+docker build -t "ft-rails:on-build" ./father
+Sending build context to Docker daemon   2.56kB
+Step 1/6 : FROM ruby
+latest: Pulling from library/ruby
+55cbf04beb70: Already exists
+1607093a898c: Pulling fs layer
+9a8ea045c926: Pulling fs layer
+d4eee24d4dac: Pulling fs layer
+b59856e9f0ab: Pulling fs layer
+c8e2cea26463: Pulling fs layer
+0dfbce878a1d: Pulling fs layer
+0ba3e917d2a3: Pulling fs layer
+b59856e9f0ab: Waiting
+c8e2cea26463: Waiting
+0dfbce878a1d: Waiting
+0ba3e917d2a3: Waiting
+9a8ea045c926: Verifying Checksum
+9a8ea045c926: Download complete
+1607093a898c: Verifying Checksum
+1607093a898c: Download complete
+c8e2cea26463: Verifying Checksum
+c8e2cea26463: Download complete
+1607093a898c: Pull complete
+d4eee24d4dac: Verifying Checksum
+d4eee24d4dac: Download complete
+9a8ea045c926: Pull complete
+0dfbce878a1d: Verifying Checksum
+0dfbce878a1d: Download complete
+0ba3e917d2a3: Verifying Checksum
+0ba3e917d2a3: Download complete
+b59856e9f0ab: Verifying Checksum
+b59856e9f0ab: Download complete
+d4eee24d4dac: Pull complete
+b59856e9f0ab: Pull complete
+c8e2cea26463: Pull complete
+0dfbce878a1d: Pull complete
+0ba3e917d2a3: Pull complete
+Digest: sha256:d30dd035da0c3aa42210e5f84dedc22d9a6c419bcfe376f76188d74ad08e77b0
+Status: Downloaded newer image for ruby:latest
+ ---> 1d8640b852eb
+Step 2/6 : RUN apt-get -qq update && apt-get -qq install -y build-essential libpq-dev nodejs sqlite3
+ ---> Running in bc9a196389d3
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mSelecting previously unselected package dpkg-dev.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29375 files and directories currently installed.)
+Preparing to unpack .../00-dpkg-dev_1.18.25_all.deb ...
+Unpacking dpkg-dev (1.18.25) ...
+Selecting previously unselected package build-essential.
+Preparing to unpack .../01-build-essential_12.3_amd64.deb ...
+Unpacking build-essential (12.3) ...
+Selecting previously unselected package libfakeroot:amd64.
+Preparing to unpack .../02-libfakeroot_1.21-3.1_amd64.deb ...
+Unpacking libfakeroot:amd64 (1.21-3.1) ...
+Selecting previously unselected package fakeroot.
+Preparing to unpack .../03-fakeroot_1.21-3.1_amd64.deb ...
+Unpacking fakeroot (1.21-3.1) ...
+Selecting previously unselected package libalgorithm-diff-perl.
+Preparing to unpack .../04-libalgorithm-diff-perl_1.19.03-1_all.deb ...
+Unpacking libalgorithm-diff-perl (1.19.03-1) ...
+Selecting previously unselected package libalgorithm-diff-xs-perl.
+Preparing to unpack .../05-libalgorithm-diff-xs-perl_0.04-4+b2_amd64.deb ...
+Unpacking libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Selecting previously unselected package libalgorithm-merge-perl.
+Preparing to unpack .../06-libalgorithm-merge-perl_0.08-3_all.deb ...
+Unpacking libalgorithm-merge-perl (0.08-3) ...
+Preparing to unpack .../07-libpq-dev_9.6.10-0+deb9u1_amd64.deb ...
+Unpacking libpq-dev (9.6.10-0+deb9u1) over (9.6.9-0+deb9u1) ...
+Preparing to unpack .../08-libpq5_9.6.10-0+deb9u1_amd64.deb ...
+Unpacking libpq5:amd64 (9.6.10-0+deb9u1) over (9.6.9-0+deb9u1) ...
+Selecting previously unselected package libuv1:amd64.
+Preparing to unpack .../09-libuv1_1.9.1-3_amd64.deb ...
+Unpacking libuv1:amd64 (1.9.1-3) ...
+Selecting previously unselected package sqlite3.
+Preparing to unpack .../10-sqlite3_3.16.2-5+deb9u1_amd64.deb ...
+Unpacking sqlite3 (3.16.2-5+deb9u1) ...
+Selecting previously unselected package nodejs.
+Preparing to unpack .../11-nodejs_4.8.2~dfsg-1_amd64.deb ...
+Unpacking nodejs (4.8.2~dfsg-1) ...
+Setting up libuv1:amd64 (1.9.1-3) ...
+Setting up sqlite3 (3.16.2-5+deb9u1) ...
+Setting up dpkg-dev (1.18.25) ...
+Setting up libpq5:amd64 (9.6.10-0+deb9u1) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Setting up libfakeroot:amd64 (1.21-3.1) ...
+Setting up libalgorithm-diff-perl (1.19.03-1) ...
+Setting up libpq-dev (9.6.10-0+deb9u1) ...
+Setting up nodejs (4.8.2~dfsg-1) ...
+update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode
+Setting up build-essential (12.3) ...
+Setting up fakeroot (1.21-3.1) ...
+update-alternatives: using /usr/bin/fakeroot-sysv to provide /usr/bin/fakeroot (fakeroot) in auto mode
+Setting up libalgorithm-merge-perl (0.08-3) ...
+Setting up libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Removing intermediate container bc9a196389d3
+ ---> 14dd75cf4d54
+Step 3/6 : ONBUILD COPY my_app /opt/app
+ ---> Running in 34f952f5c28d
+Removing intermediate container 34f952f5c28d
+ ---> a3b0f363f130
+Step 4/6 : ONBUILD WORKDIR /opt/app
+ ---> Running in cea042f67c68
+Removing intermediate container cea042f67c68
+ ---> f93394d8116b
+Step 5/6 : ONBUILD EXPOSE 3000
+ ---> Running in 085988d757aa
+Removing intermediate container 085988d757aa
+ ---> e6047449a17b
+Step 6/6 : ONBUILD RUN bundle update 			&& bundle install 			&& rake db:migrate 			&& rake db:seed
+ ---> Running in 21d7c9db0a06
+Removing intermediate container 21d7c9db0a06
+ ---> 75e210da1712
+Successfully built 75e210da1712
+Successfully tagged ft-rails:on-build
+docker build -t "ft-rails:son" ./son
+Sending build context to Docker daemon  187.9kB
+Step 1/3 : FROM ft-rails:on-build
+# Executing 4 build triggers
+ ---> Running in 3e10acdadeb8
+Removing intermediate container 3e10acdadeb8
+ ---> Running in 061f99f30fd7
+Removing intermediate container 061f99f30fd7
+ ---> Running in e166ab7fda73
+Fetching gem metadata from https://rubygems.org/............
+Fetching gem metadata from https://rubygems.org/.
+Resolving dependencies.....
+Fetching rake 12.3.1 (was 12.0.0)
+Installing rake 12.3.1 (was 12.0.0)
+Fetching concurrent-ruby 1.0.5
+Installing concurrent-ruby 1.0.5
+Fetching i18n 1.1.0 (was 0.8.6)
+Installing i18n 1.1.0 (was 0.8.6)
+Fetching minitest 5.11.3 (was 5.10.2)
+Installing minitest 5.11.3 (was 5.10.2)
+Fetching thread_safe 0.3.6
+Installing thread_safe 0.3.6
+Fetching tzinfo 1.2.5 (was 1.2.3)
+Installing tzinfo 1.2.5 (was 1.2.3)
+Fetching activesupport 5.1.6 (was 5.1.2)
+Installing activesupport 5.1.6 (was 5.1.2)
+Fetching builder 3.2.3
+Installing builder 3.2.3
+Fetching erubi 1.7.1 (was 1.6.1)
+Installing erubi 1.7.1 (was 1.6.1)
+Fetching mini_portile2 2.3.0 (was 2.2.0)
+Installing mini_portile2 2.3.0 (was 2.2.0)
+Fetching nokogiri 1.8.4 (was 1.8.0)
+Installing nokogiri 1.8.4 (was 1.8.0) with native extensions
+Fetching rails-dom-testing 2.0.3
+Installing rails-dom-testing 2.0.3
+Fetching crass 1.0.4
+Installing crass 1.0.4
+Fetching loofah 2.2.2 (was 2.0.3)
+Installing loofah 2.2.2 (was 2.0.3)
+Fetching rails-html-sanitizer 1.0.4 (was 1.0.3)
+Installing rails-html-sanitizer 1.0.4 (was 1.0.3)
+Fetching actionview 5.1.6 (was 5.1.2)
+Installing actionview 5.1.6 (was 5.1.2)
+Fetching rack 2.0.5 (was 2.0.3)
+Installing rack 2.0.5 (was 2.0.3)
+Fetching rack-test 1.1.0 (was 0.6.3)
+Installing rack-test 1.1.0 (was 0.6.3)
+Fetching actionpack 5.1.6 (was 5.1.2)
+Installing actionpack 5.1.6 (was 5.1.2)
+Fetching nio4r 2.3.1 (was 2.1.0)
+Installing nio4r 2.3.1 (was 2.1.0) with native extensions
+Fetching websocket-extensions 0.1.3 (was 0.1.2)
+Installing websocket-extensions 0.1.3 (was 0.1.2)
+Fetching websocket-driver 0.6.5
+Installing websocket-driver 0.6.5 with native extensions
+Fetching actioncable 5.1.6 (was 5.1.2)
+Installing actioncable 5.1.6 (was 5.1.2)
+Fetching globalid 0.4.1 (was 0.4.0)
+Installing globalid 0.4.1 (was 0.4.0)
+Fetching activejob 5.1.6 (was 5.1.2)
+Installing activejob 5.1.6 (was 5.1.2)
+Fetching mini_mime 1.0.1
+Installing mini_mime 1.0.1
+Fetching mail 2.7.0 (was 2.6.6)
+Installing mail 2.7.0 (was 2.6.6)
+Fetching actionmailer 5.1.6 (was 5.1.2)
+Installing actionmailer 5.1.6 (was 5.1.2)
+Fetching activemodel 5.1.6 (was 5.1.2)
+Installing activemodel 5.1.6 (was 5.1.2)
+Fetching arel 8.0.0
+Installing arel 8.0.0
+Fetching activerecord 5.1.6 (was 5.1.2)
+Installing activerecord 5.1.6 (was 5.1.2)
+Fetching public_suffix 3.0.3 (was 2.0.5)
+Installing public_suffix 3.0.3 (was 2.0.5)
+Fetching addressable 2.5.2 (was 2.5.1)
+Installing addressable 2.5.2 (was 2.5.1)
+Fetching execjs 2.7.0
+Installing execjs 2.7.0
+Fetching autoprefixer-rails 9.1.2 (was 7.1.2.3)
+Installing autoprefixer-rails 9.1.2 (was 7.1.2.3)
+Fetching coderay 1.1.2 (was 1.1.1)
+Installing coderay 1.1.2 (was 1.1.1)
+Fetching better_errors 2.4.0 (was 2.1.1)
+Installing better_errors 2.4.0 (was 2.1.1)
+Fetching bindex 0.5.0
+Installing bindex 0.5.0 with native extensions
+Fetching rb-fsevent 0.10.3 (was 0.10.2)
+Installing rb-fsevent 0.10.3 (was 0.10.2)
+Fetching ffi 1.9.25 (was 1.9.18)
+Installing ffi 1.9.25 (was 1.9.18) with native extensions
+Fetching rb-inotify 0.9.10
+Installing rb-inotify 0.9.10
+Fetching sass-listen 4.0.0
+Installing sass-listen 4.0.0
+Fetching sass 3.5.7 (was 3.5.1)
+Installing sass 3.5.7 (was 3.5.1)
+Fetching bootstrap-sass 3.3.7
+Installing bootstrap-sass 3.3.7
+Using bundler 1.16.3
+Fetching byebug 10.0.2 (was 9.0.6)
+Installing byebug 10.0.2 (was 9.0.6) with native extensions
+Fetching xpath 3.1.0 (was 2.1.0)
+Installing xpath 3.1.0 (was 2.1.0)
+Fetching capybara 2.18.0 (was 2.14.4)
+Installing capybara 2.18.0 (was 2.14.4)
+Fetching childprocess 0.9.0 (was 0.7.1)
+Installing childprocess 0.9.0 (was 0.7.1)
+Fetching coffee-script-source 1.12.2
+Installing coffee-script-source 1.12.2
+Fetching coffee-script 2.4.1
+Installing coffee-script 2.4.1
+Fetching method_source 0.9.0 (was 0.8.2)
+Installing method_source 0.9.0 (was 0.8.2)
+Fetching thor 0.20.0 (was 0.19.4)
+Installing thor 0.20.0 (was 0.19.4)
+Fetching railties 5.1.6 (was 5.1.2)
+Installing railties 5.1.6 (was 5.1.2)
+Fetching coffee-rails 4.2.2
+Installing coffee-rails 4.2.2
+Fetching multipart-post 2.0.0
+Installing multipart-post 2.0.0
+Fetching faraday 0.15.2 (was 0.12.1)
+Installing faraday 0.15.2 (was 0.12.1)
+Fetching multi_json 1.13.1 (was 1.12.1)
+Installing multi_json 1.13.1 (was 1.12.1)
+Fetching gibbon 3.2.0 (was 3.0.2)
+Installing gibbon 3.2.0 (was 3.0.2)
+Fetching high_voltage 3.1.0 (was 3.0.0)
+Installing high_voltage 3.1.0 (was 3.0.0)
+Fetching jbuilder 2.7.0
+Installing jbuilder 2.7.0
+Fetching jquery-rails 4.3.3 (was 4.3.1)
+Installing jquery-rails 4.3.3 (was 4.3.1)
+Fetching ruby_dep 1.5.0
+Installing ruby_dep 1.5.0
+Fetching listen 3.1.5
+Installing listen 3.1.5
+Fetching sprockets 3.7.2 (was 3.7.1)
+Installing sprockets 3.7.2 (was 3.7.1)
+Fetching sprockets-rails 3.2.1 (was 3.2.0)
+Installing sprockets-rails 3.2.1 (was 3.2.0)
+Fetching rails 5.1.6 (was 5.1.2)
+Installing rails 5.1.6 (was 5.1.2)
+Fetching minitest-spec-rails 5.4.0
+Installing minitest-spec-rails 5.4.0
+Fetching pg 1.0.0 (was 0.21.0)
+Installing pg 1.0.0 (was 0.21.0) with native extensions
+Fetching puma 3.12.0 (was 3.9.1)
+Installing puma 3.12.0 (was 3.9.1) with native extensions
+Fetching rails_layout 1.0.42 (was 1.0.41)
+Installing rails_layout 1.0.42 (was 1.0.41)
+Fetching rubyzip 1.2.1
+Installing rubyzip 1.2.1
+Fetching tilt 2.0.8 (was 2.0.7)
+Installing tilt 2.0.8 (was 2.0.7)
+Fetching sass-rails 5.0.7 (was 5.0.6)
+Installing sass-rails 5.0.7 (was 5.0.6)
+Fetching selenium-webdriver 3.14.0 (was 3.4.4)
+Installing selenium-webdriver 3.14.0 (was 3.4.4)
+Fetching spring 2.0.2
+Installing spring 2.0.2
+Fetching spring-watcher-listen 2.0.1
+Installing spring-watcher-listen 2.0.1
+Fetching sqlite3 1.3.13
+Installing sqlite3 1.3.13 with native extensions
+Fetching turbolinks-source 5.2.0 (was 5.0.3)
+Installing turbolinks-source 5.2.0 (was 5.0.3)
+Fetching turbolinks 5.2.0 (was 5.0.1)
+Installing turbolinks 5.2.0 (was 5.0.1)
+Fetching uglifier 4.1.18 (was 3.2.0)
+Installing uglifier 4.1.18 (was 3.2.0)
+Fetching web-console 3.6.2 (was 3.5.1)
+Installing web-console 3.6.2 (was 3.5.1)
+Bundle updated!
+Post-install message from sass:
+
+Ruby Sass is deprecated and will be unmaintained as of 26 March 2019.
+
+* If you use Sass as a command-line tool, we recommend using Dart Sass, the new
+  primary implementation: https://sass-lang.com/install
+
+* If you use Sass as a plug-in for a Ruby web framework, we recommend using the
+  sassc gem: https://github.com/sass/sassc-ruby#readme
+
+* For more details, please refer to the Sass blog:
+  http://sass.logdown.com/posts/7081811
+
+Using rake 12.3.1
+Using concurrent-ruby 1.0.5
+Using i18n 1.1.0
+Using minitest 5.11.3
+Using thread_safe 0.3.6
+Using tzinfo 1.2.5
+Using activesupport 5.1.6
+Using builder 3.2.3
+Using erubi 1.7.1
+Using mini_portile2 2.3.0
+Using nokogiri 1.8.4
+Using rails-dom-testing 2.0.3
+Using crass 1.0.4
+Using loofah 2.2.2
+Using rails-html-sanitizer 1.0.4
+Using actionview 5.1.6
+Using rack 2.0.5
+Using rack-test 1.1.0
+Using actionpack 5.1.6
+Using nio4r 2.3.1
+Using websocket-extensions 0.1.3
+Using websocket-driver 0.6.5
+Using actioncable 5.1.6
+Using globalid 0.4.1
+Using activejob 5.1.6
+Using mini_mime 1.0.1
+Using mail 2.7.0
+Using actionmailer 5.1.6
+Using activemodel 5.1.6
+Using arel 8.0.0
+Using activerecord 5.1.6
+Using public_suffix 3.0.3
+Using addressable 2.5.2
+Using execjs 2.7.0
+Using autoprefixer-rails 9.1.2
+Using coderay 1.1.2
+Using better_errors 2.4.0
+Using bindex 0.5.0
+Using rb-fsevent 0.10.3
+Using ffi 1.9.25
+Using rb-inotify 0.9.10
+Using sass-listen 4.0.0
+Using sass 3.5.7
+Using bootstrap-sass 3.3.7
+Using bundler 1.16.3
+Using byebug 10.0.2
+Using xpath 3.1.0
+Using capybara 2.18.0
+Using childprocess 0.9.0
+Using coffee-script-source 1.12.2
+Using coffee-script 2.4.1
+Using method_source 0.9.0
+Using thor 0.20.0
+Using railties 5.1.6
+Using coffee-rails 4.2.2
+Using multipart-post 2.0.0
+Using faraday 0.15.2
+Using multi_json 1.13.1
+Using gibbon 3.2.0
+Using high_voltage 3.1.0
+Using jbuilder 2.7.0
+Using jquery-rails 4.3.3
+Using ruby_dep 1.5.0
+Using listen 3.1.5
+Using sprockets 3.7.2
+Using sprockets-rails 3.2.1
+Using rails 5.1.6
+Using minitest-spec-rails 5.4.0
+Using pg 1.0.0
+Using puma 3.12.0
+Using rails_layout 1.0.42
+Using rubyzip 1.2.1
+Using tilt 2.0.8
+Using sass-rails 5.0.7
+Using selenium-webdriver 3.14.0
+Using spring 2.0.2
+Using spring-watcher-listen 2.0.1
+Using sqlite3 1.3.13
+Using turbolinks-source 5.2.0
+Using turbolinks 5.2.0
+Using uglifier 4.1.18
+Using web-console 3.6.2
+Bundle complete! 23 Gemfile dependencies, 82 gems now installed.
+Bundled gems are installed into `/usr/local/bundle`
+Removing intermediate container e166ab7fda73
+ ---> 20c2a9be9c3b
+Step 2/3 : EXPOSE 3000
+ ---> Running in 02c0e757ce6a
+Removing intermediate container 02c0e757ce6a
+ ---> b63b450030db
+Step 3/3 : CMD ["rails", "s", "-b", "0.0.0.0", "-p" ,"3000"]
+ ---> Running in a0013cc1bef2
+Removing intermediate container a0013cc1bef2
+ ---> 0fca3a97516d
+Successfully built 0fca3a97516d
+Successfully tagged ft-rails:son
+docker build -t "gitlab" ./
+Sending build context to Docker daemon  6.144kB
+Step 1/5 : FROM ubuntu:18.04
+ ---> 735f80812f90
+Step 2/5 : RUN apt-get -qq update && apt-get -qq upgrade -y && apt-get -qq install -y 	curl openssh-server ca-certificates postfix ufw tzdata 	&& curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash 	&& apt-get install -y gitlab-ce 	&& apt-get autoremove 	&& apt-get clean
+ ---> Running in 62bcda5f9f01
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0m(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4037 files and directories currently installed.)
+Preparing to unpack .../libapt-pkg5.0_1.6.3ubuntu0.1_amd64.deb ...
+Unpacking libapt-pkg5.0:amd64 (1.6.3ubuntu0.1) over (1.6.3) ...
+Setting up libapt-pkg5.0:amd64 (1.6.3ubuntu0.1) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4037 files and directories currently installed.)
+Preparing to unpack .../apt_1.6.3ubuntu0.1_amd64.deb ...
+Unpacking apt (1.6.3ubuntu0.1) over (1.6.3) ...
+Setting up apt (1.6.3ubuntu0.1) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mSelecting previously unselected package libssl1.1:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4037 files and directories currently installed.)
+Preparing to unpack .../libssl1.1_1.1.0g-2ubuntu4.1_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.0g-2ubuntu4.1) ...
+Selecting previously unselected package libpython3.6-minimal:amd64.
+Preparing to unpack .../libpython3.6-minimal_3.6.5-3_amd64.deb ...
+Unpacking libpython3.6-minimal:amd64 (3.6.5-3) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../libexpat1_2.2.5-3_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.5-3) ...
+Selecting previously unselected package python3.6-minimal.
+Preparing to unpack .../python3.6-minimal_3.6.5-3_amd64.deb ...
+Unpacking python3.6-minimal (3.6.5-3) ...
+Setting up libssl1.1:amd64 (1.1.0g-2ubuntu4.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libpython3.6-minimal:amd64 (3.6.5-3) ...
