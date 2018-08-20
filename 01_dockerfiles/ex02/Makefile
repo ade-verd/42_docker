@@ -1,0 +1,37 @@
+IMG_FATHER="ft-rails:on-build"
+IMG_SON="ft-rails:son"
+CONTAINER_NAME="tadada"
+LOCATION_FATHER=./father
+LOCATION_SON=./son
+PORTS=-p 3000:3000
+VM=Char
+IP=$(shell docker-machine ip $(VM))
+if [ "$(shell uname)" = 'Linux' ]; then OPEN=xdg-open ; else OPEN=open; fi
+
+.PHONY: all, build_father, build_son, check, run, clean, fclean
+
+all: build_father build_son run
+
+build_father:
+	docker build -t $(IMG_FATHER) $(LOCATION_FATHER)
+
+build_son:
+	docker build -t $(IMG_SON) $(LOCATION_SON)
+
+run:
+	docker run -d --name $(CONTAINER_NAME) $(PORTS) --rm $(IMG_SON) \
+
+check:
+	docker image ls
+	@echo
+	docker ps -a
+	@echo
+	./open.sh
+
+clean:
+	docker stop $(CONTAINER_NAME) || true
+	docker rm $(CONTAINER_NAME) || true
+
+# clean container and image
+fclean: clean
+	docker rmi $(IMG_FATHER) $(IMG_SON) || true

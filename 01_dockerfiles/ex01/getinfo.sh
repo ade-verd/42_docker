@@ -7,8 +7,13 @@ URL_TS3=ts3server://$IP
 URL_HTML=http://www.teamspeak.com/invite/$IP
 
 TOKEN=$(docker logs teamspeak_server | grep token | sed 's/.*token=//' | sed 's/\r//g' | head -1)
-LOGIN=$(docker logs teamspeak_server | grep login | awk '{split($$0, i, ", "); print i[1]}' | tr -d '\t\r\" ')
-PASSWD=$(docker logs teamspeak_server | grep login | awk '{split($$0, i, ", "); print i[2]}' | tr -d '\t\r\" ')
+if [ "$OS" = 'Linux' ]; then
+	LOGIN=$(docker logs teamspeak_server | grep login | awk '{split($$0, i, ", "); print i[1]}' | tr -d '\t\r\" ')
+	PASSWD=$(docker logs teamspeak_server | grep login | awk '{split($$0, i, ", "); print i[2]}' | tr -d '\t\r\" ')
+else
+	LOGIN=$(docker logs teamspeak_server | grep login | awk '{split($0, i, ", "); print i[1]}' | tr -d '\t\r\" ')
+	PASSWD=$(docker logs teamspeak_server | grep login | awk '{split($0, i, ", "); print i[2]}' | tr -d '\t\r\" ')
+fi
 
 TIMES=0
 TIMEOUT=60

@@ -17,6 +17,7 @@ build:
 
 run:
 	docker run -dit --name $(CONTAINER_NAME) $(PORTS) --rm $(IMG) \
+	&& echo \
 	&& ./getinfo.sh \
 	&& ./open.sh
 
