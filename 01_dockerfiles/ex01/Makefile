@@ -8,7 +8,7 @@ URL_TS3=ts3server://$(IP)
 URL_HTML=http://www.teamspeak.com/invite/$(IP)
 OS=`uname`
 
-.PHONY: all, build, check, get-info, open, run, clean, fclean
+.PHONY: all, build, check, get-info, logs, open, run, clean, fclean
 
 all: build run
 
@@ -25,6 +25,9 @@ check:
 	docker image ls
 	@echo
 	docker ps -a
+
+logs:
+	docker logs $(CONTAINER_NAME) --follow
 
 clean:
 	docker stop $(CONTAINER_NAME) || true

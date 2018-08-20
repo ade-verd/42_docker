@@ -3,7 +3,7 @@ CONTAINER_NAME="alpivim"
 LOCATION=./
 
 
-.PHONY: all, build, check, run, clean, fclean
+.PHONY: all, build, check, logs, run, clean, fclean
 
 all: build run
 
@@ -17,6 +17,9 @@ check:
 	docker image ls
 	@echo
 	docker ps -a
+
+logs:
+	docker logs $(CONTAINER_NAME) --follow
 
 clean:
 	docker stop $(CONTAINER_NAME) || true

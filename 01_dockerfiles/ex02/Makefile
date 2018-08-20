@@ -8,7 +8,7 @@ VM=Char
 IP=$(shell docker-machine ip $(VM))
 if [ "$(shell uname)" = 'Linux' ]; then OPEN=xdg-open ; else OPEN=open; fi
 
-.PHONY: all, build_father, build_son, check, run, clean, fclean
+.PHONY: all, build_father, build_son, check, logs, run, clean, fclean
 
 all: build_father build_son run
 
@@ -27,6 +27,9 @@ check:
 	docker ps -a
 	@echo
 	./open.sh
+
+logs:
+	docker logs $(CONTAINER_NAME) --follow
 
 clean:
 	docker stop $(CONTAINER_NAME) || true

@@ -1,12 +1,12 @@
 IMG="gitlab"
 CONTAINER_NAME="fox_ginger"
 LOCATION=./
-PORTS=-p 8022:22 -p 8443:443
+PORTS=-p 8022:22 -p 8443:443 -p 8080:80
 VM=Char
 IP=$(shell docker-machine ip $(VM))
 if [ "$(shell uname)" = 'Linux' ]; then OPEN=xdg-open ; else OPEN=open; fi
 
-.PHONY: all, build, check, run, clean, fclean
+.PHONY: all, build, check, logs, run, clean, fclean
 
 all: build run
 
@@ -22,6 +22,9 @@ check:
 	docker ps -a
 	@echo
 	./open.sh
+
+logs:
+	docker logs $(CONTAINER_NAME) --follow
 
 clean:
 	docker stop $(CONTAINER_NAME) || true

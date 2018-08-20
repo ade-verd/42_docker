@@ -1,15 +1,16 @@
 FROM ubuntu:18.04
 
-RUN apt-get -qq update && apt-get -qq install -y \
+RUN apt-get -qq update && apt-get -qq upgrade -y && apt-get -qq install -y \
 	curl openssh-server ca-certificates postfix ufw tzdata \
 	&& curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash \
 	&& apt-get install -y gitlab-ce \
 	&& apt-get autoremove \
 	&& apt-get clean
 
-EXPOSE 443 22
+EXPOSE 443 22 80
 # Cf. gitlab architecture
-# HTTP(S): TCP 443
+# HTTPS: TCP 80
+# HTTPS: TCP 443
 # SSH: TCP 22
 
 COPY entrypoint.sh /root

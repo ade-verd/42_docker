@@ -3,8 +3,8 @@
 OS=$(uname)
 VM=Char
 IP=$(docker-machine ip $VM)
-PORT=8443
-URL=https://$IP:$PORT
+PORT=8080
+URL=http://$IP:$PORT
 if [ "$OS" = 'Linux' ]; then OPEN="xdg-open" ; else OPEN="open"; fi
 
 set -o errexit
