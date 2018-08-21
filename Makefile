@@ -9,7 +9,9 @@ build_df:
 	./scripts/docker_build_dfiles.sh > ./scripts/docker_build_dfiles.log
 
 clean_cont:
-	docker rm $(docker ps -a -q) --force
+	./scripts/docker_clean_containers.sh
 
 clean_img:
-	docker rmi $(docker images -q)
+	./scripts/docker_clean_images.sh
+
+fclean: clean_cont clean_img

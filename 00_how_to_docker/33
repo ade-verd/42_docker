@@ -16,8 +16,15 @@ if [ "$#" -gt 0 ]; then
 	exit 1
 fi
 
-set -o xtrace
-docker rmi --force $(docker images -q)
+echo "docker rmi --force \$(docker images -q)"
+echo
+echo "Some images have been build for the part 01_dockerfiles."
+read -p "Do you really want to remove every images ? (Please type 'yesIdo' to confirm) ? "
+if [ "$REPLY" = "yesIdo" ]; then
+	(set -x; docker rmi --force $(docker images -q))
+else
+	echo "Fiouuuuu :)"
+fi
 
 # Sources:
 # docker rmi --help

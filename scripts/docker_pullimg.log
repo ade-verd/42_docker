@@ -1,33 +1,384 @@
 latest: Pulling from library/hello-world
+9db2ca6ccae0: Pulling fs layer
+9db2ca6ccae0: Verifying Checksum
+9db2ca6ccae0: Download complete
+9db2ca6ccae0: Pull complete
 Digest: sha256:4b8ff392a12ed9ea17784bd3c9a8b1fa3299cac44aca35a85c90c5e3c7afacdc
-Status: Image is up to date for hello-world:latest
+Status: Downloaded newer image for hello-world:latest
 latest: Pulling from library/nginx
+be8881be8156: Pulling fs layer
+32d9726baeef: Pulling fs layer
+87e5e6f71297: Pulling fs layer
+87e5e6f71297: Verifying Checksum
+87e5e6f71297: Download complete
+be8881be8156: Verifying Checksum
+be8881be8156: Download complete
+32d9726baeef: Verifying Checksum
+32d9726baeef: Download complete
+be8881be8156: Pull complete
+32d9726baeef: Pull complete
+87e5e6f71297: Pull complete
 Digest: sha256:d85914d547a6c92faa39ce7058bd7529baacab7e0cd4255442b04577c4d1f424
-Status: Image is up to date for nginx:latest
+Status: Downloaded newer image for nginx:latest
 latest: Pulling from library/alpine
+8e3ba11ec2a2: Pulling fs layer
+8e3ba11ec2a2: Verifying Checksum
+8e3ba11ec2a2: Download complete
+8e3ba11ec2a2: Pull complete
 Digest: sha256:7043076348bf5040220df6ad703798fd8593a0918d06d3ce30c6c93be117e430
-Status: Image is up to date for alpine:latest
+Status: Downloaded newer image for alpine:latest
 latest: Pulling from library/debian
+55cbf04beb70: Pulling fs layer
+55cbf04beb70: Verifying Checksum
+55cbf04beb70: Download complete
+55cbf04beb70: Pull complete
 Digest: sha256:f1f61086ea01a72b30c7287adee8c929e569853de03b7c462a8ac75e0d0224c4
-Status: Image is up to date for debian:latest
+Status: Downloaded newer image for debian:latest
 latest: Pulling from library/mysql
+be8881be8156: Already exists
+c3995dabd1d7: Pulling fs layer
+9931fdda3586: Pulling fs layer
+bb1b6b6eff6a: Pulling fs layer
+a65f125fa718: Pulling fs layer
+2d9f8dd09be2: Pulling fs layer
+37b912cb2afe: Pulling fs layer
+54242fcd8eaa: Pulling fs layer
+0a9d4d211511: Pulling fs layer
+270ae5bd02c2: Pulling fs layer
+9b55b8e72e70: Pulling fs layer
+68083f7985cd: Pulling fs layer
+a65f125fa718: Waiting
+37b912cb2afe: Waiting
+54242fcd8eaa: Waiting
+0a9d4d211511: Waiting
+270ae5bd02c2: Waiting
+9b55b8e72e70: Waiting
+68083f7985cd: Waiting
+2d9f8dd09be2: Waiting
+c3995dabd1d7: Verifying Checksum
+c3995dabd1d7: Download complete
+9931fdda3586: Verifying Checksum
+9931fdda3586: Download complete
+bb1b6b6eff6a: Verifying Checksum
+bb1b6b6eff6a: Download complete
+c3995dabd1d7: Pull complete
+a65f125fa718: Verifying Checksum
+a65f125fa718: Download complete
+9931fdda3586: Pull complete
+37b912cb2afe: Verifying Checksum
+37b912cb2afe: Download complete
+bb1b6b6eff6a: Pull complete
+54242fcd8eaa: Verifying Checksum
+54242fcd8eaa: Download complete
+2d9f8dd09be2: Verifying Checksum
+2d9f8dd09be2: Download complete
+a65f125fa718: Pull complete
+9b55b8e72e70: Verifying Checksum
+9b55b8e72e70: Download complete
+270ae5bd02c2: Verifying Checksum
+270ae5bd02c2: Download complete
+2d9f8dd09be2: Pull complete
+68083f7985cd: Verifying Checksum
+68083f7985cd: Download complete
+37b912cb2afe: Pull complete
+0a9d4d211511: Verifying Checksum
+0a9d4d211511: Download complete
+54242fcd8eaa: Pull complete
+0a9d4d211511: Pull complete
+270ae5bd02c2: Pull complete
+9b55b8e72e70: Pull complete
+68083f7985cd: Pull complete
 Digest: sha256:d39a8ab7679df309e7eff6ddba434ad5747cc2a2acee2d7c60d8221c9acedcad
-Status: Image is up to date for mysql:latest
+Status: Downloaded newer image for mysql:latest
 latest: Pulling from library/wordpress
+be8881be8156: Already exists
+69a25f7e4930: Pulling fs layer
+65632e89c5f4: Pulling fs layer
+cd75fa32da8f: Pulling fs layer
+15bc7736db11: Pulling fs layer
+b2c40cef4807: Pulling fs layer
+f3507e55e5eb: Pulling fs layer
+e6006cdfa16b: Pulling fs layer
+a3ed406e3c88: Pulling fs layer
+745f1366071d: Pulling fs layer
+bdfcada64ad8: Pulling fs layer
+86f2b695cc77: Pulling fs layer
+5f634a03970a: Pulling fs layer
+a329a7ebde19: Pulling fs layer
+fb3d2649f534: Pulling fs layer
+8fa928654124: Pulling fs layer
+a925e4a45888: Pulling fs layer
+b5e827c13dc3: Pulling fs layer
+61b17faecc30: Pulling fs layer
+15bc7736db11: Waiting
+b2c40cef4807: Waiting
+f3507e55e5eb: Waiting
+e6006cdfa16b: Waiting
+a3ed406e3c88: Waiting
+745f1366071d: Waiting
+bdfcada64ad8: Waiting
+86f2b695cc77: Waiting
+5f634a03970a: Waiting
+a329a7ebde19: Waiting
+fb3d2649f534: Waiting
+8fa928654124: Waiting
+a925e4a45888: Waiting
+b5e827c13dc3: Waiting
+61b17faecc30: Waiting
+c85ae8a39ff7: Pulling fs layer
+c85ae8a39ff7: Waiting
+cd75fa32da8f: Verifying Checksum
+cd75fa32da8f: Download complete
+69a25f7e4930: Verifying Checksum
+69a25f7e4930: Download complete
+69a25f7e4930: Pull complete
+b2c40cef4807: Verifying Checksum
+b2c40cef4807: Download complete
+15bc7736db11: Verifying Checksum
+15bc7736db11: Download complete
+65632e89c5f4: Verifying Checksum
+65632e89c5f4: Download complete
+f3507e55e5eb: Verifying Checksum
+f3507e55e5eb: Download complete
+e6006cdfa16b: Verifying Checksum
+e6006cdfa16b: Download complete
+a3ed406e3c88: Verifying Checksum
+a3ed406e3c88: Download complete
+bdfcada64ad8: Verifying Checksum
+bdfcada64ad8: Download complete
+745f1366071d: Verifying Checksum
+745f1366071d: Download complete
+5f634a03970a: Verifying Checksum
+5f634a03970a: Download complete
+a329a7ebde19: Verifying Checksum
+a329a7ebde19: Download complete
+86f2b695cc77: Verifying Checksum
+86f2b695cc77: Download complete
+fb3d2649f534: Verifying Checksum
+fb3d2649f534: Download complete
+8fa928654124: Verifying Checksum
+8fa928654124: Download complete
+a925e4a45888: Verifying Checksum
+a925e4a45888: Download complete
+b5e827c13dc3: Verifying Checksum
+b5e827c13dc3: Download complete
+65632e89c5f4: Pull complete
+c85ae8a39ff7: Verifying Checksum
+c85ae8a39ff7: Download complete
+61b17faecc30: Verifying Checksum
+61b17faecc30: Download complete
+cd75fa32da8f: Pull complete
+15bc7736db11: Pull complete
+b2c40cef4807: Pull complete
+f3507e55e5eb: Pull complete
+e6006cdfa16b: Pull complete
+a3ed406e3c88: Pull complete
+745f1366071d: Pull complete
+bdfcada64ad8: Pull complete
+86f2b695cc77: Pull complete
+5f634a03970a: Pull complete
+a329a7ebde19: Pull complete
+fb3d2649f534: Pull complete
+8fa928654124: Pull complete
+a925e4a45888: Pull complete
+b5e827c13dc3: Pull complete
+61b17faecc30: Pull complete
+c85ae8a39ff7: Pull complete
 Digest: sha256:d92a0d4e9aae885789af8538bb8afe8624c23cb5d763dcc1d3a2e4ac57531d21
-Status: Image is up to date for wordpress:latest
+Status: Downloaded newer image for wordpress:latest
 latest: Pulling from phpmyadmin/phpmyadmin
+ff3a5c916c92: Pulling fs layer
+b9833b0afc68: Pulling fs layer
+1253fa17a201: Pulling fs layer
+01ce3cad229c: Pulling fs layer
+3297115ec239: Pulling fs layer
+0a9fef0dc4b5: Pulling fs layer
+150955d70ce4: Pulling fs layer
+4c28392cdace: Pulling fs layer
+3f06b93505df: Pulling fs layer
+ac0808c5c66c: Pulling fs layer
+5694a182d3fc: Pulling fs layer
+47e6f5239ac9: Pulling fs layer
+c1b097e5736c: Pulling fs layer
+97c4177852e1: Pulling fs layer
+3cae62584229: Pulling fs layer
+e58c55feff22: Pulling fs layer
+b5d4253f78f5: Pulling fs layer
+01ce3cad229c: Waiting
+3297115ec239: Waiting
+0a9fef0dc4b5: Waiting
+150955d70ce4: Waiting
+4c28392cdace: Waiting
+3f06b93505df: Waiting
+ac0808c5c66c: Waiting
+5694a182d3fc: Waiting
+47e6f5239ac9: Waiting
+c1b097e5736c: Waiting
+97c4177852e1: Waiting
+3cae62584229: Waiting
+e58c55feff22: Waiting
+b5d4253f78f5: Waiting
+1253fa17a201: Verifying Checksum
+1253fa17a201: Download complete
+b9833b0afc68: Verifying Checksum
+b9833b0afc68: Download complete
+ff3a5c916c92: Verifying Checksum
+ff3a5c916c92: Download complete
+ff3a5c916c92: Pull complete
+01ce3cad229c: Verifying Checksum
+01ce3cad229c: Download complete
+0a9fef0dc4b5: Verifying Checksum
+0a9fef0dc4b5: Download complete
+b9833b0afc68: Pull complete
+3297115ec239: Verifying Checksum
+3297115ec239: Download complete
+1253fa17a201: Pull complete
+4c28392cdace: Verifying Checksum
+4c28392cdace: Download complete
+01ce3cad229c: Pull complete
+150955d70ce4: Verifying Checksum
+150955d70ce4: Download complete
+3f06b93505df: Verifying Checksum
+3f06b93505df: Download complete
+ac0808c5c66c: Verifying Checksum
+ac0808c5c66c: Download complete
+5694a182d3fc: Verifying Checksum
+5694a182d3fc: Download complete
+3297115ec239: Pull complete
+c1b097e5736c: Verifying Checksum
+c1b097e5736c: Download complete
+47e6f5239ac9: Verifying Checksum
+47e6f5239ac9: Download complete
+97c4177852e1: Verifying Checksum
+97c4177852e1: Download complete
+0a9fef0dc4b5: Pull complete
+e58c55feff22: Verifying Checksum
+e58c55feff22: Download complete
+b5d4253f78f5: Verifying Checksum
+b5d4253f78f5: Download complete
+3cae62584229: Verifying Checksum
+3cae62584229: Download complete
+150955d70ce4: Pull complete
+4c28392cdace: Pull complete
+3f06b93505df: Pull complete
+ac0808c5c66c: Pull complete
+5694a182d3fc: Pull complete
+47e6f5239ac9: Pull complete
+c1b097e5736c: Pull complete
+97c4177852e1: Pull complete
+3cae62584229: Pull complete
+e58c55feff22: Pull complete
+b5d4253f78f5: Pull complete
 Digest: sha256:b003fa5555dcb0a305d26aec3935b3a1127179ea8ad9d57685df4e4eab912ca8
-Status: Image is up to date for phpmyadmin/phpmyadmin:latest
+Status: Downloaded newer image for phpmyadmin/phpmyadmin:latest
 2-slim: Pulling from library/python
+be8881be8156: Already exists
+44247e56d488: Pulling fs layer
+9b1ccb116b10: Pulling fs layer
+94c785725d8a: Pulling fs layer
+94c785725d8a: Verifying Checksum
+94c785725d8a: Download complete
+44247e56d488: Verifying Checksum
+44247e56d488: Download complete
+9b1ccb116b10: Verifying Checksum
+9b1ccb116b10: Download complete
+44247e56d488: Pull complete
+9b1ccb116b10: Pull complete
+94c785725d8a: Pull complete
 Digest: sha256:447e3a799a60fa5c98b1e429f3f814fe55642b1a38099702720d8ae96e9eaeaf
-Status: Image is up to date for python:2-slim
+Status: Downloaded newer image for python:2-slim
 latest: Pulling from library/rabbitmq
+be8881be8156: Already exists
+ab96a756674d: Pulling fs layer
+1afa3c8b1ac8: Pulling fs layer
+8d6ac301ca22: Pulling fs layer
+665d14f5b3ec: Pulling fs layer
+c8c7fea479bc: Pulling fs layer
+1f57b98898fc: Pulling fs layer
+c57de6ff1fda: Pulling fs layer
+eb20b6079db3: Pulling fs layer
+bfcd2c7011de: Pulling fs layer
+71a3874699ee: Pulling fs layer
+5b914bcc4a84: Pulling fs layer
+665d14f5b3ec: Waiting
+c8c7fea479bc: Waiting
+1f57b98898fc: Waiting
+c57de6ff1fda: Waiting
+eb20b6079db3: Waiting
+bfcd2c7011de: Waiting
+71a3874699ee: Waiting
+5b914bcc4a84: Waiting
+1afa3c8b1ac8: Verifying Checksum
+1afa3c8b1ac8: Download complete
+8d6ac301ca22: Verifying Checksum
+8d6ac301ca22: Download complete
+ab96a756674d: Verifying Checksum
+ab96a756674d: Download complete
+665d14f5b3ec: Verifying Checksum
+665d14f5b3ec: Download complete
+ab96a756674d: Pull complete
+1f57b98898fc: Verifying Checksum
+1f57b98898fc: Download complete
+c8c7fea479bc: Verifying Checksum
+c8c7fea479bc: Download complete
+c57de6ff1fda: Verifying Checksum
+c57de6ff1fda: Download complete
+1afa3c8b1ac8: Pull complete
+eb20b6079db3: Verifying Checksum
+eb20b6079db3: Download complete
+8d6ac301ca22: Pull complete
+bfcd2c7011de: Verifying Checksum
+bfcd2c7011de: Download complete
+71a3874699ee: Verifying Checksum
+71a3874699ee: Download complete
+665d14f5b3ec: Pull complete
+5b914bcc4a84: Verifying Checksum
+5b914bcc4a84: Download complete
+c8c7fea479bc: Pull complete
+1f57b98898fc: Pull complete
+c57de6ff1fda: Pull complete
+eb20b6079db3: Pull complete
+bfcd2c7011de: Pull complete
+71a3874699ee: Pull complete
+5b914bcc4a84: Pull complete
 Digest: sha256:14a4f6c871e3218c383ac38be6e3af6af547fff46bf38c8fe113aca6f1b49697
-Status: Image is up to date for rabbitmq:latest
+Status: Downloaded newer image for rabbitmq:latest
 latest: Pulling from 42school/engineering-bay
+b7f33cc0b48e: Pulling fs layer
+8eda8bb6fee4: Pulling fs layer
+65cd0d3dd23a: Pulling fs layer
+65cf4bb584dd: Pulling fs layer
+9a0ba8f2dce4: Pulling fs layer
+65cf4bb584dd: Waiting
+9a0ba8f2dce4: Waiting
+8eda8bb6fee4: Verifying Checksum
+8eda8bb6fee4: Download complete
+b7f33cc0b48e: Verifying Checksum
+b7f33cc0b48e: Download complete
+b7f33cc0b48e: Pull complete
+65cd0d3dd23a: Verifying Checksum
+65cd0d3dd23a: Download complete
+65cf4bb584dd: Verifying Checksum
+65cf4bb584dd: Download complete
+9a0ba8f2dce4: Verifying Checksum
+9a0ba8f2dce4: Download complete
+8eda8bb6fee4: Pull complete
+65cd0d3dd23a: Pull complete
+65cf4bb584dd: Pull complete
+9a0ba8f2dce4: Pull complete
 Digest: sha256:5bc69a7b7ad5c5de54cffcfae09e94960ee66437ae0f7f2d270bde8e49559a62
-Status: Image is up to date for 42school/engineering-bay:latest
+Status: Downloaded newer image for 42school/engineering-bay:latest
 latest: Pulling from 42school/marine-squad
+b7f33cc0b48e: Already exists
+8eda8bb6fee4: Already exists
+65cd0d3dd23a: Already exists
+354337d0a1a8: Pulling fs layer
+d6b1fa8f65bb: Pulling fs layer
+354337d0a1a8: Verifying Checksum
+354337d0a1a8: Download complete
+d6b1fa8f65bb: Verifying Checksum
+d6b1fa8f65bb: Download complete
+354337d0a1a8: Pull complete
+d6b1fa8f65bb: Pull complete
 Digest: sha256:2743413ee99183167014768298df9cf3fc5449eb2a735cc5386788087106b279
-Status: Image is up to date for 42school/marine-squad:latest
+Status: Downloaded newer image for 42school/marine-squad:latest

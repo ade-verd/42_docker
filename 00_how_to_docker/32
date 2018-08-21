@@ -16,8 +16,15 @@ if [ "$#" -gt 0 ]; then
 	exit 1
 fi
 
-set -o xtrace
-docker rm --force $(docker ps -a -q)
+echo "docker rmi --force \$(docker images -q)"
+echo
+echo "fox_ginger (part 01_dockerfiles) is working and its init is veryyyy long"
+read -p "Do you really want to stop and remove every containers ? (Please type 'yesIdo' to confirm) ? "
+if [ "$REPLY" = "yesIdo" ]; then
+	(set -x; docker rm --force $(docker ps -a -q))
+else
+	echo "Fiouuuuu :)"
+fi
 
 # Sources:
 # docker rm --help

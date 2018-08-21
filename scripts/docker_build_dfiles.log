@@ -3,74 +3,1004 @@ Sending build context to Docker daemon  3.072kB
 Step 1/3 : FROM alpine:latest
  ---> 11cd0b38bc3c
 Step 2/3 : RUN apk update && apk add vim
- ---> Using cache
- ---> 82830f76edd6
+ ---> Running in b885d4cb4eac
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/community/x86_64/APKINDEX.tar.gz
+v3.8.0-72-gd0eedffbc4 [http://dl-cdn.alpinelinux.org/alpine/v3.8/main]
+v3.8.0-63-g1c0e971a52 [http://dl-cdn.alpinelinux.org/alpine/v3.8/community]
+OK: 9541 distinct packages available
+(1/5) Installing lua5.3-libs (5.3.4-r5)
+(2/5) Installing ncurses-terminfo-base (6.1-r0)
+(3/5) Installing ncurses-terminfo (6.1-r0)
+(4/5) Installing ncurses-libs (6.1-r0)
+(5/5) Installing vim (8.1.0115-r0)
+Executing busybox-1.28.4-r0.trigger
+OK: 39 MiB in 18 packages
+Removing intermediate container b885d4cb4eac
+ ---> 881343b5bfad
 Step 3/3 : CMD [ "vim" ]
- ---> Using cache
- ---> 0f1791faf4d1
-Successfully built 0f1791faf4d1
+ ---> Running in c3b7ab0b3671
+Removing intermediate container c3b7ab0b3671
+ ---> 0b1bc68db57d
+Successfully built 0b1bc68db57d
 Successfully tagged alpivim:ex00
 docker build -t "teamspeak:ex01" ./
-Sending build context to Docker daemon  294.4kB
+Sending build context to Docker daemon  7.168kB
 Step 1/7 : FROM debian:latest
  ---> 3bbb526d2608
 Step 2/7 : ENV TS3_VERSION 3.3.0
- ---> Using cache
- ---> 43cce8956d59
+ ---> Running in eda4ae71412a
+Removing intermediate container eda4ae71412a
+ ---> 0182e0f641c4
 Step 3/7 : RUN 	apt-get update -y 	&& apt-get upgrade -y 	&& apt-get install -y 		curl 		bzip2 	&& apt-get autoremove -y 	&& apt-get clean
- ---> Using cache
- ---> 7ec5bf4c8e1c
+ ---> Running in 5edcb759a005
+Get:1 http://security.debian.org/debian-security stretch/updates InRelease [94.3 kB]
+Ign:2 http://cdn-fastly.deb.debian.org/debian stretch InRelease
+Get:3 http://cdn-fastly.deb.debian.org/debian stretch-updates InRelease [91.0 kB]
+Get:4 http://cdn-fastly.deb.debian.org/debian stretch Release [118 kB]
+Get:5 http://cdn-fastly.deb.debian.org/debian stretch Release.gpg [2434 B]
+Get:6 http://security.debian.org/debian-security stretch/updates/main amd64 Packages [390 kB]
+Get:7 http://cdn-fastly.deb.debian.org/debian stretch-updates/main amd64 Packages [5148 B]
+Get:8 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 Packages [7099 kB]
+Fetched 7800 kB in 2s (3087 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  ca-certificates krb5-locales libcurl3 libffi6 libgmp10 libgnutls30
+  libgssapi-krb5-2 libhogweed4 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3
+  libkrb5support0 libldap-2.4-2 libldap-common libnghttp2-14 libp11-kit0
+  libpsl5 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1
+  libssl1.0.2 libssl1.1 libtasn1-6 libunistring0 openssl publicsuffix
+Suggested packages:
+  bzip2-doc gnutls-bin krb5-doc krb5-user libsasl2-modules-gssapi-mit
+  | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp
+  libsasl2-modules-sql
+The following NEW packages will be installed:
+  bzip2 ca-certificates curl krb5-locales libcurl3 libffi6 libgmp10
+  libgnutls30 libgssapi-krb5-2 libhogweed4 libidn2-0 libk5crypto3 libkeyutils1
+  libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common libnghttp2-14
+  libp11-kit0 libpsl5 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db
+  libssh2-1 libssl1.0.2 libssl1.1 libtasn1-6 libunistring0 openssl
+  publicsuffix
+0 upgraded, 31 newly installed, 0 to remove and 0 not upgraded.
+Need to get 7673 kB of archives.
+After this operation, 19.9 MB of additional disk space will be used.
+Get:1 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libssl1.0.2 amd64 1.0.2l-2+deb9u3 [1294 kB]
+Get:2 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libssl1.1 amd64 1.1.0f-3+deb9u2 [1344 kB]
+Get:3 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 bzip2 amd64 1.0.6-8.1 [47.5 kB]
+Get:4 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 krb5-locales all 1.15-1+deb9u1 [93.8 kB]
+Get:5 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libgmp10 amd64 2:6.1.2+dfsg-1 [253 kB]
+Get:6 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libhogweed4 amd64 3.3-1+b2 [136 kB]
+Get:7 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libffi6 amd64 3.2.1-6 [20.4 kB]
+Get:8 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libp11-kit0 amd64 0.23.3-2 [111 kB]
+Get:9 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libtasn1-6 amd64 4.10-1.1+deb9u1 [50.6 kB]
+Get:10 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libgnutls30 amd64 3.5.8-5+deb9u3 [895 kB]
+Get:11 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libkeyutils1 amd64 1.5.9-9 [12.4 kB]
+Get:12 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libkrb5support0 amd64 1.15-1+deb9u1 [61.9 kB]
+Get:13 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libk5crypto3 amd64 1.15-1+deb9u1 [119 kB]
+Get:14 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libkrb5-3 amd64 1.15-1+deb9u1 [311 kB]
+Get:15 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libgssapi-krb5-2 amd64 1.15-1+deb9u1 [155 kB]
+Get:16 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libsasl2-modules-db amd64 2.1.27~101-g0780600+dfsg-3 [68.2 kB]
+Get:17 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libsasl2-2 amd64 2.1.27~101-g0780600+dfsg-3 [105 kB]
+Get:18 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libldap-common all 2.4.44+dfsg-5+deb9u2 [85.5 kB]
+Get:19 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libldap-2.4-2 amd64 2.4.44+dfsg-5+deb9u2 [219 kB]
+Get:20 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 openssl amd64 1.1.0f-3+deb9u2 [725 kB]
+Get:21 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 ca-certificates all 20161130+nmu1+deb9u1 [182 kB]
+Get:22 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libunistring0 amd64 0.9.6+really0.9.3-0.1 [279 kB]
+Get:23 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libidn2-0 amd64 0.16-1+deb9u1 [60.7 kB]
+Get:24 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libnghttp2-14 amd64 1.18.1-1 [79.1 kB]
+Get:25 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libpsl5 amd64 0.17.0-3 [41.8 kB]
+Get:26 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-1+b1 [60.4 kB]
+Get:27 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libssh2-1 amd64 1.7.0-1 [138 kB]
+Get:28 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libcurl3 amd64 7.52.1-5+deb9u6 [291 kB]
+Get:29 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 curl amd64 7.52.1-5+deb9u6 [228 kB]
+Get:30 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 libsasl2-modules amd64 2.1.27~101-g0780600+dfsg-3 [102 kB]
+Get:31 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 publicsuffix all 20180218.2049-0+deb9u1 [103 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 7673 kB in 1s (6266 kB/s)
+Selecting previously unselected package libssl1.0.2:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6498 files and directories currently installed.)
+Preparing to unpack .../00-libssl1.0.2_1.0.2l-2+deb9u3_amd64.deb ...
+Unpacking libssl1.0.2:amd64 (1.0.2l-2+deb9u3) ...
+Selecting previously unselected package libssl1.1:amd64.
+Preparing to unpack .../01-libssl1.1_1.1.0f-3+deb9u2_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.0f-3+deb9u2) ...
+Selecting previously unselected package bzip2.
+Preparing to unpack .../02-bzip2_1.0.6-8.1_amd64.deb ...
+Unpacking bzip2 (1.0.6-8.1) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../03-krb5-locales_1.15-1+deb9u1_all.deb ...
+Unpacking krb5-locales (1.15-1+deb9u1) ...
+Selecting previously unselected package libgmp10:amd64.
+Preparing to unpack .../04-libgmp10_2%3a6.1.2+dfsg-1_amd64.deb ...
+Unpacking libgmp10:amd64 (2:6.1.2+dfsg-1) ...
+Selecting previously unselected package libhogweed4:amd64.
+Preparing to unpack .../05-libhogweed4_3.3-1+b2_amd64.deb ...
+Unpacking libhogweed4:amd64 (3.3-1+b2) ...
+Selecting previously unselected package libffi6:amd64.
+Preparing to unpack .../06-libffi6_3.2.1-6_amd64.deb ...
+Unpacking libffi6:amd64 (3.2.1-6) ...
+Selecting previously unselected package libp11-kit0:amd64.
+Preparing to unpack .../07-libp11-kit0_0.23.3-2_amd64.deb ...
+Unpacking libp11-kit0:amd64 (0.23.3-2) ...
+Selecting previously unselected package libtasn1-6:amd64.
+Preparing to unpack .../08-libtasn1-6_4.10-1.1+deb9u1_amd64.deb ...
+Unpacking libtasn1-6:amd64 (4.10-1.1+deb9u1) ...
+Selecting previously unselected package libgnutls30:amd64.
+Preparing to unpack .../09-libgnutls30_3.5.8-5+deb9u3_amd64.deb ...
+Unpacking libgnutls30:amd64 (3.5.8-5+deb9u3) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../10-libkeyutils1_1.5.9-9_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.5.9-9) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../11-libkrb5support0_1.15-1+deb9u1_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../12-libk5crypto3_1.15-1+deb9u1_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../13-libkrb5-3_1.15-1+deb9u1_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../14-libgssapi-krb5-2_1.15-1+deb9u1_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../15-libsasl2-modules-db_2.1.27~101-g0780600+dfsg-3_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../16-libsasl2-2_2.1.27~101-g0780600+dfsg-3_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../17-libldap-common_2.4.44+dfsg-5+deb9u2_all.deb ...
+Unpacking libldap-common (2.4.44+dfsg-5+deb9u2) ...
+Selecting previously unselected package libldap-2.4-2:amd64.
+Preparing to unpack .../18-libldap-2.4-2_2.4.44+dfsg-5+deb9u2_amd64.deb ...
+Unpacking libldap-2.4-2:amd64 (2.4.44+dfsg-5+deb9u2) ...
+Selecting previously unselected package openssl.
+Preparing to unpack .../19-openssl_1.1.0f-3+deb9u2_amd64.deb ...
+Unpacking openssl (1.1.0f-3+deb9u2) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../20-ca-certificates_20161130+nmu1+deb9u1_all.deb ...
+Unpacking ca-certificates (20161130+nmu1+deb9u1) ...
+Selecting previously unselected package libunistring0:amd64.
+Preparing to unpack .../21-libunistring0_0.9.6+really0.9.3-0.1_amd64.deb ...
+Unpacking libunistring0:amd64 (0.9.6+really0.9.3-0.1) ...
+Selecting previously unselected package libidn2-0:amd64.
+Preparing to unpack .../22-libidn2-0_0.16-1+deb9u1_amd64.deb ...
+Unpacking libidn2-0:amd64 (0.16-1+deb9u1) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../23-libnghttp2-14_1.18.1-1_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.18.1-1) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../24-libpsl5_0.17.0-3_amd64.deb ...
+Unpacking libpsl5:amd64 (0.17.0-3) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../25-librtmp1_2.4+20151223.gitfa8646d.1-1+b1_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1+b1) ...
+Selecting previously unselected package libssh2-1:amd64.
+Preparing to unpack .../26-libssh2-1_1.7.0-1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.7.0-1) ...
+Selecting previously unselected package libcurl3:amd64.
+Preparing to unpack .../27-libcurl3_7.52.1-5+deb9u6_amd64.deb ...
+Unpacking libcurl3:amd64 (7.52.1-5+deb9u6) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../28-curl_7.52.1-5+deb9u6_amd64.deb ...
+Unpacking curl (7.52.1-5+deb9u6) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../29-libsasl2-modules_2.1.27~101-g0780600+dfsg-3_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../30-publicsuffix_20180218.2049-0+deb9u1_all.deb ...
+Unpacking publicsuffix (20180218.2049-0+deb9u1) ...
+Setting up libnghttp2-14:amd64 (1.18.1-1) ...
+Setting up libldap-common (2.4.44+dfsg-5+deb9u2) ...
+Setting up libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Setting up libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Setting up libtasn1-6:amd64 (4.10-1.1+deb9u1) ...
+Setting up bzip2 (1.0.6-8.1) ...
+Setting up libssl1.0.2:amd64 (1.0.2l-2+deb9u3) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.24.1 /usr/local/share/perl/5.24.1 /usr/lib/x86_64-linux-gnu/perl5/5.24 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.24 /usr/share/perl/5.24 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libgmp10:amd64 (2:6.1.2+dfsg-1) ...
+Setting up libssh2-1:amd64 (1.7.0-1) ...
+Setting up krb5-locales (1.15-1+deb9u1) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Setting up publicsuffix (20180218.2049-0+deb9u1) ...
+Setting up libunistring0:amd64 (0.9.6+really0.9.3-0.1) ...
+Setting up libssl1.1:amd64 (1.1.0f-3+deb9u2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.24.1 /usr/local/share/perl/5.24.1 /usr/lib/x86_64-linux-gnu/perl5/5.24 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.24 /usr/share/perl/5.24 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up openssl (1.1.0f-3+deb9u2) ...
+Setting up libffi6:amd64 (3.2.1-6) ...
+Setting up libkeyutils1:amd64 (1.5.9-9) ...
+Setting up libsasl2-modules:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Setting up ca-certificates (20161130+nmu1+deb9u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.24.1 /usr/local/share/perl/5.24.1 /usr/lib/x86_64-linux-gnu/perl5/5.24 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.24 /usr/share/perl/5.24 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+151 added, 0 removed; done.
+Setting up libidn2-0:amd64 (0.16-1+deb9u1) ...
+Setting up libpsl5:amd64 (0.17.0-3) ...
+Setting up libkrb5support0:amd64 (1.15-1+deb9u1) ...
+Setting up libhogweed4:amd64 (3.3-1+b2) ...
+Setting up libp11-kit0:amd64 (0.23.3-2) ...
+Setting up libk5crypto3:amd64 (1.15-1+deb9u1) ...
+Setting up libgnutls30:amd64 (3.5.8-5+deb9u3) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1+b1) ...
+Setting up libldap-2.4-2:amd64 (2.4.44+dfsg-5+deb9u2) ...
+Setting up libkrb5-3:amd64 (1.15-1+deb9u1) ...
+Setting up libgssapi-krb5-2:amd64 (1.15-1+deb9u1) ...
+Setting up libcurl3:amd64 (7.52.1-5+deb9u6) ...
+Setting up curl (7.52.1-5+deb9u6) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Processing triggers for ca-certificates (20161130+nmu1+deb9u1) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Removing intermediate container 5edcb759a005
+ ---> 91fee59dd633
 Step 4/7 : RUN curl -fsSL http://dl.4players.de/ts/releases/${TS3_VERSION}/teamspeak3-server_linux_amd64-${TS3_VERSION}.tar.bz2 | tar -jxvf - -C /opt/ 	&& mv /opt/teamspeak3-server_linux_amd64 /opt/teamspeak3
- ---> Using cache
- ---> f6bd700f4744
+ ---> Running in d44eca225034
+teamspeak3-server_linux_amd64/
+teamspeak3-server_linux_amd64/LICENSE
+teamspeak3-server_linux_amd64/tsdns/
+teamspeak3-server_linux_amd64/tsdns/tsdnsserver
+teamspeak3-server_linux_amd64/tsdns/README
+teamspeak3-server_linux_amd64/tsdns/USAGE
+teamspeak3-server_linux_amd64/tsdns/tsdns_settings.ini.sample
+teamspeak3-server_linux_amd64/sql/
+teamspeak3-server_linux_amd64/sql/group_member_delete.sql
+teamspeak3-server_linux_amd64/sql/update_28.sql
+teamspeak3-server_linux_amd64/sql/perm_insert_bulk.sql
+teamspeak3-server_linux_amd64/sql/channel_delete.sql
+teamspeak3-server_linux_amd64/sql/update_21.sql
+teamspeak3-server_linux_amd64/sql/complain_delete_prune.sql
+teamspeak3-server_linux_amd64/sql/groups_get_by_serverid_type.sql
+teamspeak3-server_linux_amd64/sql/update_16.sql
+teamspeak3-server_linux_amd64/sql/permission_load_channel_group_total.sql
+teamspeak3-server_linux_amd64/sql/update_15.sql
+teamspeak3-server_linux_amd64/sql/client_clear_traffic_stats.sql
+teamspeak3-server_linux_amd64/sql/ban_list.sql
+teamspeak3-server_linux_amd64/sql/client_get_by_id.sql
+teamspeak3-server_linux_amd64/sql/revocations_delete.sql
+teamspeak3-server_linux_amd64/sql/server_update_machine_id.sql
+teamspeak3-server_linux_amd64/sql/perm_update_get_groups.sql
+teamspeak3-server_linux_amd64/sql/update_27.sql
+teamspeak3-server_linux_amd64/sql/group_member_get.sql
+teamspeak3-server_linux_amd64/sql/message_update_flag.sql
+teamspeak3-server_linux_amd64/sql/client_update_stats.sql
+teamspeak3-server_linux_amd64/sql/groups_get.sql
+teamspeak3-server_linux_amd64/sql/channel_insert.sql
+teamspeak3-server_linux_amd64/sql/group_member_delete_by_groupid.sql
+teamspeak3-server_linux_amd64/sql/update_24.sql
+teamspeak3-server_linux_amd64/sql/binding_delete.sql
+teamspeak3-server_linux_amd64/sql/channel_insert_bulk.sql
+teamspeak3-server_linux_amd64/sql/update_23.sql
+teamspeak3-server_linux_amd64/sql/info_get_by_ident.sql
+teamspeak3-server_linux_amd64/sql/client_delete_prune.sql
+teamspeak3-server_linux_amd64/sql/properties_delete_by_string_id.sql
+teamspeak3-server_linux_amd64/sql/channel_insert_bulk_fixup.sql
+teamspeak3-server_linux_amd64/sql/perm_group_copy.sql
+teamspeak3-server_linux_amd64/sql/custom_insert.sql
+teamspeak3-server_linux_amd64/sql/complain_get_by_serverid.sql
+teamspeak3-server_linux_amd64/sql/group_insert.sql
+teamspeak3-server_linux_amd64/sql/client_insert.sql
+teamspeak3-server_linux_amd64/sql/perm_copy_default_permissions.sql
+teamspeak3-server_linux_amd64/sql/properties_insert_by_string_id.sql
+teamspeak3-server_linux_amd64/sql/integration_action_list.sql
+teamspeak3-server_linux_amd64/sql/token_list.sql
+teamspeak3-server_linux_amd64/sql/update_20.sql
+teamspeak3-server_linux_amd64/sql/complain_insert.sql
+teamspeak3-server_linux_amd64/sql/client_get_by_serverid_bulk.sql
+teamspeak3-server_linux_amd64/sql/update_26.sql
+teamspeak3-server_linux_amd64/sql/channel_update_parentid.sql
+teamspeak3-server_linux_amd64/sql/client_get_by_name_or_uid.sql
+teamspeak3-server_linux_amd64/sql/update_19.sql
+teamspeak3-server_linux_amd64/sql/complain_delete_all.sql
+teamspeak3-server_linux_amd64/sql/token_delete_by_key.sql
+teamspeak3-server_linux_amd64/sql/group_id_get_by_name.sql
+teamspeak3-server_linux_amd64/sql/integration_action_insert.sql
+teamspeak3-server_linux_amd64/sql/group_rename.sql
+teamspeak3-server_linux_amd64/sql/integration_list.sql
+teamspeak3-server_linux_amd64/sql/update_mariadb_27.sql
+teamspeak3-server_linux_amd64/sql/channel_server_list_properties_bulk.sql
+teamspeak3-server_linux_amd64/sql/integration_insert.sql
+teamspeak3-server_linux_amd64/sql/update_mariadb_29.sql
+teamspeak3-server_linux_amd64/sql/ban_delete.sql
+teamspeak3-server_linux_amd64/sql/message_insert.sql
+teamspeak3-server_linux_amd64/sql/group_members_get_by_groupid.sql
+teamspeak3-server_linux_amd64/sql/properties_insert_by_id.sql
+teamspeak3-server_linux_amd64/sql/integration_action_delete.sql
+teamspeak3-server_linux_amd64/sql/perm_delete_by_groupid.sql
+teamspeak3-server_linux_amd64/sql/update_permissions_12.sql
+teamspeak3-server_linux_amd64/sql/update_mariadb_26.sql
+teamspeak3-server_linux_amd64/sql/defaults.sql
+teamspeak3-server_linux_amd64/sql/update_22.sql
+teamspeak3-server_linux_amd64/sql/permission_load_server_and_channel_group_total.sql
+teamspeak3-server_linux_amd64/sql/message_delete.sql
+teamspeak3-server_linux_amd64/sql/perm_delete_by_serverid.sql
+teamspeak3-server_linux_amd64/sql/perm_delete_by_permid.sql
+teamspeak3-server_linux_amd64/sql/perm_group_perm_copy.sql
+teamspeak3-server_linux_amd64/sql/update_13.sql
+teamspeak3-server_linux_amd64/sql/client_get.sql
+teamspeak3-server_linux_amd64/sql/custom_get_by_ident.sql
+teamspeak3-server_linux_amd64/sql/group_member_detail_get_by_groupid.sql
+teamspeak3-server_linux_amd64/sql/client_delete.sql
+teamspeak3-server_linux_amd64/sql/perm_rename.sql
+teamspeak3-server_linux_amd64/sql/group_members_get_by_id.sql
+teamspeak3-server_linux_amd64/sql/server_snapshot_delete.sql
+teamspeak3-server_linux_amd64/sql/group_member_insert.sql
+teamspeak3-server_linux_amd64/sql/groups_get_by_serverid.sql
+teamspeak3-server_linux_amd64/sql/custom_get_by_id.sql
+teamspeak3-server_linux_amd64/sql/ban_insert.sql
+teamspeak3-server_linux_amd64/sql/channel_insert_bulk_mapping.sql
+teamspeak3-server_linux_amd64/sql/server_delete_get_qa_clients.sql
+teamspeak3-server_linux_amd64/sql/permission_load_other.sql
+teamspeak3-server_linux_amd64/sql/message_get_unread_by_clientid.sql
+teamspeak3-server_linux_amd64/sql/server_update_port.sql
+teamspeak3-server_linux_amd64/sql/bindings_insert.sql
+teamspeak3-server_linux_amd64/sql/update_25.sql
+teamspeak3-server_linux_amd64/sql/channel_properties_bulk_insert.sql
+teamspeak3-server_linux_amd64/sql/custom_delete.sql
+teamspeak3-server_linux_amd64/sql/client_get_by_uid.sql
+teamspeak3-server_linux_amd64/sql/info_insert.sql
+teamspeak3-server_linux_amd64/sql/server_update_autostart.sql
+teamspeak3-server_linux_amd64/sql/revocations_getlist.sql
+teamspeak3-server_linux_amd64/sql/update_mariadb_28.sql
+teamspeak3-server_linux_amd64/sql/server_get_byport.sql
+teamspeak3-server_linux_amd64/sql/perm_group_get_mapping.sql
+teamspeak3-server_linux_amd64/sql/update_sqlite_29.sql
+teamspeak3-server_linux_amd64/sql/client_get_by_serverid_limit.sql
+teamspeak3-server_linux_amd64/sql/group_delete.sql
+teamspeak3-server_linux_amd64/sql/update_12.sql
+teamspeak3-server_linux_amd64/sql/updates_and_fixes/
+teamspeak3-server_linux_amd64/sql/updates_and_fixes/mariadb_fix_latin_utf8.sql
+teamspeak3-server_linux_amd64/sql/updates_and_fixes/convert_mysql_to_mariadb.sql
+teamspeak3-server_linux_amd64/sql/create_mariadb/
+teamspeak3-server_linux_amd64/sql/create_mariadb/drop_tables.sql
+teamspeak3-server_linux_amd64/sql/create_mariadb/create_tables.sql
+teamspeak3-server_linux_amd64/sql/channel_server_list.sql
+teamspeak3-server_linux_amd64/sql/permission_load_server_group_total.sql
+teamspeak3-server_linux_amd64/sql/perm_insert.sql
+teamspeak3-server_linux_amd64/sql/message_get_by_clientid.sql
+teamspeak3-server_linux_amd64/sql/properties_list_by_id.sql
+teamspeak3-server_linux_amd64/sql/perm_get_by_serverid.sql
+teamspeak3-server_linux_amd64/sql/clientid_get_by_name_pw_serverid.sql
+teamspeak3-server_linux_amd64/sql/update_29.sql
+teamspeak3-server_linux_amd64/sql/client_update_login_info.sql
+teamspeak3-server_linux_amd64/sql/server_delete.sql
+teamspeak3-server_linux_amd64/sql/bindings_list.sql
+teamspeak3-server_linux_amd64/sql/custom_update.sql
+teamspeak3-server_linux_amd64/sql/client_insert_bulk.sql
+teamspeak3-server_linux_amd64/sql/update_14.sql
+teamspeak3-server_linux_amd64/sql/update_sqlite_28.sql
+teamspeak3-server_linux_amd64/sql/client_insert_bulk_mapping.sql
+teamspeak3-server_linux_amd64/sql/server_update_traffic_stats.sql
+teamspeak3-server_linux_amd64/sql/channel_delete_bulk.sql
+teamspeak3-server_linux_amd64/sql/complain_delete.sql
+teamspeak3-server_linux_amd64/sql/client_get_by_serverid.sql
+teamspeak3-server_linux_amd64/sql/server_snapshot_delete_failed.sql
+teamspeak3-server_linux_amd64/sql/perm_get_by_id.sql
+teamspeak3-server_linux_amd64/sql/create_sqlite/
+teamspeak3-server_linux_amd64/sql/create_sqlite/drop_tables.sql
+teamspeak3-server_linux_amd64/sql/create_sqlite/create_tables.sql
+teamspeak3-server_linux_amd64/sql/revocations_insert_bulk.sql
+teamspeak3-server_linux_amd64/sql/properties_list_by_string_id.sql
+teamspeak3-server_linux_amd64/sql/message_list_by_clientid.sql
+teamspeak3-server_linux_amd64/sql/token_insert.sql
+teamspeak3-server_linux_amd64/sql/client_update_traffic_stats.sql
+teamspeak3-server_linux_amd64/sql/group_insert_bulk_snapshot_get_mapping.sql
+teamspeak3-server_linux_amd64/sql/client_properties_bulk_insert.sql
+teamspeak3-server_linux_amd64/sql/group_member_insert_bulk.sql
+teamspeak3-server_linux_amd64/sql/server_get_byid.sql
+teamspeak3-server_linux_amd64/sql/properties_delete_by_id.sql
+teamspeak3-server_linux_amd64/sql/integration_delete.sql
+teamspeak3-server_linux_amd64/sql/server_list.sql
+teamspeak3-server_linux_amd64/sql/update_18.sql
+teamspeak3-server_linux_amd64/sql/server_list_by_machine_id.sql
+teamspeak3-server_linux_amd64/sql/server_clear_traffic_stats.sql
+teamspeak3-server_linux_amd64/sql/server_insert.sql
+teamspeak3-server_linux_amd64/sql/client_count_by_serverid.sql
+teamspeak3-server_linux_amd64/sql/update_sqlite_27.sql
+teamspeak3-server_linux_amd64/sql/update_database_version.sql
+teamspeak3-server_linux_amd64/sql/client_update_name.sql
+teamspeak3-server_linux_amd64/sql/group_insert_bulk_snapshot.sql
+teamspeak3-server_linux_amd64/sql/clientid_get_by_name_pw.sql
+teamspeak3-server_linux_amd64/sql/info_delete.sql
+teamspeak3-server_linux_amd64/sql/group_members_get_by_serverid.sql
+teamspeak3-server_linux_amd64/sql/update_17.sql
+teamspeak3-server_linux_amd64/sql/token_get_by_key.sql
+teamspeak3-server_linux_amd64/ts3server
+teamspeak3-server_linux_amd64/libts3db_sqlite3.so
+teamspeak3-server_linux_amd64/doc/
+teamspeak3-server_linux_amd64/doc/serverquery/
+teamspeak3-server_linux_amd64/doc/serverquery/serverquery.html
+teamspeak3-server_linux_amd64/doc/serverquery/TeamSpeak_Logo.png
+teamspeak3-server_linux_amd64/doc/serverquery/stylesheet.css
+teamspeak3-server_linux_amd64/doc/server_quickstart.txt
+teamspeak3-server_linux_amd64/doc/privilegekey_guide.txt
+teamspeak3-server_linux_amd64/doc/accounting.txt
+teamspeak3-server_linux_amd64/doc/permissiondoc.txt
+teamspeak3-server_linux_amd64/doc/server_upgrade.txt
+teamspeak3-server_linux_amd64/doc/update_mysql_to_mariadb.txt
+teamspeak3-server_linux_amd64/ts3server_startscript.sh
+teamspeak3-server_linux_amd64/libts3db_mariadb.so
+teamspeak3-server_linux_amd64/redist/
+teamspeak3-server_linux_amd64/redist/libmariadb.so.2
+teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh
+teamspeak3-server_linux_amd64/libts3_ssh.so
+teamspeak3-server_linux_amd64/serverquerydocs/
+teamspeak3-server_linux_amd64/serverquerydocs/tokendelete.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientgetnamefromuid.txt
+teamspeak3-server_linux_amd64/serverquerydocs/quit.txt
+teamspeak3-server_linux_amd64/serverquerydocs/instanceedit.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftgetfilelist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientpermlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/tokenuse.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serverstart.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servernotifyregister.txt
+teamspeak3-server_linux_amd64/serverquerydocs/complaindel.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientdelperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/logview.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channeldelperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/permoverview.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupdel.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientgetnamefromdbid.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgroupdelperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/logadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientdbedit.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serverlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftdeletefile.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientkick.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelclientdelperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servertemppasswordadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientgetuidfromclid.txt
+teamspeak3-server_linux_amd64/serverquerydocs/messageget.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serverrequestconnectioninfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serversnapshotdeploy.txt
+teamspeak3-server_linux_amd64/serverquerydocs/customsearch.txt
+teamspeak3-server_linux_amd64/serverquerydocs/privilegekeyuse.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupdelclient.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftgetfileinfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/custominfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/banclient.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientgetdbidfromuid.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergrouppermlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/instanceinfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channeldelete.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serversnapshotcreate.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientinfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgroupdel.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupcopy.txt
+teamspeak3-server_linux_amd64/serverquerydocs/complainadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelclientaddperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientdbfind.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientdbdelete.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgroupclientlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupaddperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/banlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/tokenlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/messageadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/setclientchannelgroup.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientaddperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelcreate.txt
+teamspeak3-server_linux_amd64/serverquerydocs/sendtextmessage.txt
+teamspeak3-server_linux_amd64/serverquerydocs/logout.txt
+teamspeak3-server_linux_amd64/serverquerydocs/bindinglist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/hostinfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/messageupdateflag.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serverdelete.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelclientpermlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/complaindelall.txt
+teamspeak3-server_linux_amd64/serverquerydocs/bandel.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergrouprename.txt
+teamspeak3-server_linux_amd64/serverquerydocs/help.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgroupcopy.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serverinfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servertemppasswordlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channellist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/privilegekeydelete.txt
+teamspeak3-server_linux_amd64/serverquerydocs/permfind.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serveredit.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serverstop.txt
+teamspeak3-server_linux_amd64/serverquerydocs/privilegekeylist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/use.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelmove.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientdblist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/permidgetbyname.txt
+teamspeak3-server_linux_amd64/serverquerydocs/permreset.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serveridgetbyport.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channeladdperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupaddclient.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servernotifyunregister.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientedit.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftrenamefile.txt
+teamspeak3-server_linux_amd64/serverquerydocs/customdelete.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servertemppassworddel.txt
+teamspeak3-server_linux_amd64/serverquerydocs/tokenadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/banadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientfind.txt
+teamspeak3-server_linux_amd64/serverquerydocs/bandelall.txt
+teamspeak3-server_linux_amd64/serverquerydocs/gm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/complainlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientsetserverquerylogin.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientpoke.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientgetids.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftinitupload.txt
+teamspeak3-server_linux_amd64/serverquerydocs/permget.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupclientlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupsbyclientid.txt
+teamspeak3-server_linux_amd64/serverquerydocs/customset.txt
+teamspeak3-server_linux_amd64/serverquerydocs/messagedel.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftinitdownload.txt
+teamspeak3-server_linux_amd64/serverquerydocs/privilegekeyadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgrouppermlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/permissionlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/version.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/whoami.txt
+teamspeak3-server_linux_amd64/serverquerydocs/serverprocessstop.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelpermlist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupautodelperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servercreate.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgroupadd.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftcreatedir.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelfind.txt
+teamspeak3-server_linux_amd64/serverquerydocs/login.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergrouplist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/messagelist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientdbinfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgrouplist.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelinfo.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgroupaddperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channeledit.txt
+teamspeak3-server_linux_amd64/serverquerydocs/channelgrouprename.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientupdate.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupdelperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/servergroupautoaddperm.txt
+teamspeak3-server_linux_amd64/serverquerydocs/ftstop.txt
+teamspeak3-server_linux_amd64/serverquerydocs/clientmove.txt
+teamspeak3-server_linux_amd64/CHANGELOG
+Removing intermediate container d44eca225034
+ ---> ca0602c1976f
 Step 5/7 : EXPOSE 	9987/udp 10011 30033
- ---> Using cache
- ---> 8a188c505efc
+ ---> Running in 45fc3af2d03e
+Removing intermediate container 45fc3af2d03e
+ ---> 773470eddeb7
 Step 6/7 : ENV TS3SERVER_LICENSE=accept 	LD_LIBRARY_PATH="/opt/teamspeak3 /opt/teamspeak3/ts3server"
- ---> Using cache
- ---> c3b62bb93dc7
+ ---> Running in 005cbfe176a5
+Removing intermediate container 005cbfe176a5
+ ---> 323930a7fd02
 Step 7/7 : CMD [ "./opt/teamspeak3/ts3server_minimal_runscript.sh"]
- ---> Using cache
- ---> 5127a22ac966
-Successfully built 5127a22ac966
+ ---> Running in 2126a0797c97
+Removing intermediate container 2126a0797c97
+ ---> c643d5b79f7a
+Successfully built c643d5b79f7a
 Successfully tagged teamspeak:ex01
 docker build -t "ft-rails:on-build" ./father
 Sending build context to Docker daemon   2.56kB
 Step 1/6 : FROM ruby
+latest: Pulling from library/ruby
+55cbf04beb70: Already exists
+1607093a898c: Pulling fs layer
+9a8ea045c926: Pulling fs layer
+d4eee24d4dac: Pulling fs layer
+b59856e9f0ab: Pulling fs layer
+c8e2cea26463: Pulling fs layer
+0dfbce878a1d: Pulling fs layer
+0ba3e917d2a3: Pulling fs layer
+b59856e9f0ab: Waiting
+c8e2cea26463: Waiting
+0dfbce878a1d: Waiting
+0ba3e917d2a3: Waiting
+9a8ea045c926: Verifying Checksum
+9a8ea045c926: Download complete
+1607093a898c: Verifying Checksum
+1607093a898c: Download complete
+1607093a898c: Pull complete
+c8e2cea26463: Verifying Checksum
+c8e2cea26463: Download complete
+d4eee24d4dac: Verifying Checksum
+d4eee24d4dac: Download complete
+0dfbce878a1d: Verifying Checksum
+0dfbce878a1d: Download complete
+0ba3e917d2a3: Verifying Checksum
+0ba3e917d2a3: Download complete
+9a8ea045c926: Pull complete
+b59856e9f0ab: Verifying Checksum
+b59856e9f0ab: Download complete
+d4eee24d4dac: Pull complete
+b59856e9f0ab: Pull complete
+c8e2cea26463: Pull complete
+0dfbce878a1d: Pull complete
+0ba3e917d2a3: Pull complete
+Digest: sha256:d30dd035da0c3aa42210e5f84dedc22d9a6c419bcfe376f76188d74ad08e77b0
+Status: Downloaded newer image for ruby:latest
  ---> 1d8640b852eb
 Step 2/6 : RUN apt-get -qq update && apt-get -qq install -y build-essential libpq-dev nodejs sqlite3
- ---> Using cache
- ---> dff490dda0ab
+ ---> Running in 2d7b9415cd07
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mSelecting previously unselected package dpkg-dev.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29375 files and directories currently installed.)
+Preparing to unpack .../00-dpkg-dev_1.18.25_all.deb ...
+Unpacking dpkg-dev (1.18.25) ...
+Selecting previously unselected package build-essential.
+Preparing to unpack .../01-build-essential_12.3_amd64.deb ...
+Unpacking build-essential (12.3) ...
+Selecting previously unselected package libfakeroot:amd64.
+Preparing to unpack .../02-libfakeroot_1.21-3.1_amd64.deb ...
+Unpacking libfakeroot:amd64 (1.21-3.1) ...
+Selecting previously unselected package fakeroot.
+Preparing to unpack .../03-fakeroot_1.21-3.1_amd64.deb ...
+Unpacking fakeroot (1.21-3.1) ...
+Selecting previously unselected package libalgorithm-diff-perl.
+Preparing to unpack .../04-libalgorithm-diff-perl_1.19.03-1_all.deb ...
+Unpacking libalgorithm-diff-perl (1.19.03-1) ...
+Selecting previously unselected package libalgorithm-diff-xs-perl.
+Preparing to unpack .../05-libalgorithm-diff-xs-perl_0.04-4+b2_amd64.deb ...
+Unpacking libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Selecting previously unselected package libalgorithm-merge-perl.
+Preparing to unpack .../06-libalgorithm-merge-perl_0.08-3_all.deb ...
+Unpacking libalgorithm-merge-perl (0.08-3) ...
+Preparing to unpack .../07-libpq-dev_9.6.10-0+deb9u1_amd64.deb ...
+Unpacking libpq-dev (9.6.10-0+deb9u1) over (9.6.9-0+deb9u1) ...
+Preparing to unpack .../08-libpq5_9.6.10-0+deb9u1_amd64.deb ...
+Unpacking libpq5:amd64 (9.6.10-0+deb9u1) over (9.6.9-0+deb9u1) ...
+Selecting previously unselected package libuv1:amd64.
+Preparing to unpack .../09-libuv1_1.9.1-3_amd64.deb ...
+Unpacking libuv1:amd64 (1.9.1-3) ...
+Selecting previously unselected package sqlite3.
+Preparing to unpack .../10-sqlite3_3.16.2-5+deb9u1_amd64.deb ...
+Unpacking sqlite3 (3.16.2-5+deb9u1) ...
+Selecting previously unselected package nodejs.
+Preparing to unpack .../11-nodejs_4.8.2~dfsg-1_amd64.deb ...
+Unpacking nodejs (4.8.2~dfsg-1) ...
+Setting up libuv1:amd64 (1.9.1-3) ...
+Setting up sqlite3 (3.16.2-5+deb9u1) ...
+Setting up dpkg-dev (1.18.25) ...
+Setting up libpq5:amd64 (9.6.10-0+deb9u1) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Setting up libfakeroot:amd64 (1.21-3.1) ...
+Setting up libalgorithm-diff-perl (1.19.03-1) ...
+Setting up libpq-dev (9.6.10-0+deb9u1) ...
+Setting up nodejs (4.8.2~dfsg-1) ...
+update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode
+Setting up build-essential (12.3) ...
+Setting up fakeroot (1.21-3.1) ...
+update-alternatives: using /usr/bin/fakeroot-sysv to provide /usr/bin/fakeroot (fakeroot) in auto mode
+Setting up libalgorithm-merge-perl (0.08-3) ...
+Setting up libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Removing intermediate container 2d7b9415cd07
+ ---> 8832789583cc
 Step 3/6 : ONBUILD COPY my_app /opt/app
- ---> Using cache
- ---> bdeda8e23241
+ ---> Running in 8259c14059ba
+Removing intermediate container 8259c14059ba
+ ---> 618b0935eb61
 Step 4/6 : ONBUILD WORKDIR /opt/app
- ---> Using cache
- ---> aa1f7946d1d8
+ ---> Running in 269443164bb4
+Removing intermediate container 269443164bb4
+ ---> 083e871fc922
 Step 5/6 : ONBUILD EXPOSE 3000
- ---> Using cache
- ---> 8a10f30c571c
+ ---> Running in 019e2180ec09
+Removing intermediate container 019e2180ec09
+ ---> da557b680d69
 Step 6/6 : ONBUILD RUN bundle update 			&& bundle install 			&& rake db:migrate 			&& rake db:seed
- ---> Using cache
- ---> d3a1a9dee510
-Successfully built d3a1a9dee510
+ ---> Running in e80a535bdbe7
+Removing intermediate container e80a535bdbe7
+ ---> 8b4f9237f3df
+Successfully built 8b4f9237f3df
 Successfully tagged ft-rails:on-build
 docker build -t "ft-rails:son" ./son
 Sending build context to Docker daemon  187.9kB
 Step 1/3 : FROM ft-rails:on-build
 # Executing 4 build triggers
- ---> Using cache
- ---> Using cache
- ---> Using cache
- ---> Using cache
- ---> f5e22932dee7
+ ---> Running in f0a2328ad88d
+Removing intermediate container f0a2328ad88d
+ ---> Running in e803a1f97035
+Removing intermediate container e803a1f97035
+ ---> Running in 4fc023e339d5
+Fetching gem metadata from https://rubygems.org/............
+Fetching gem metadata from https://rubygems.org/.
+Resolving dependencies.....
+Fetching rake 12.3.1 (was 12.0.0)
+Installing rake 12.3.1 (was 12.0.0)
+Fetching concurrent-ruby 1.0.5
+Installing concurrent-ruby 1.0.5
+Fetching i18n 1.1.0 (was 0.8.6)
+Installing i18n 1.1.0 (was 0.8.6)
+Fetching minitest 5.11.3 (was 5.10.2)
+Installing minitest 5.11.3 (was 5.10.2)
+Fetching thread_safe 0.3.6
+Installing thread_safe 0.3.6
+Fetching tzinfo 1.2.5 (was 1.2.3)
+Installing tzinfo 1.2.5 (was 1.2.3)
+Fetching activesupport 5.1.6 (was 5.1.2)
+Installing activesupport 5.1.6 (was 5.1.2)
+Fetching builder 3.2.3
+Installing builder 3.2.3
+Fetching erubi 1.7.1 (was 1.6.1)
+Installing erubi 1.7.1 (was 1.6.1)
+Fetching mini_portile2 2.3.0 (was 2.2.0)
+Installing mini_portile2 2.3.0 (was 2.2.0)
+Fetching nokogiri 1.8.4 (was 1.8.0)
+Installing nokogiri 1.8.4 (was 1.8.0) with native extensions
+Fetching rails-dom-testing 2.0.3
+Installing rails-dom-testing 2.0.3
+Fetching crass 1.0.4
+Installing crass 1.0.4
+Fetching loofah 2.2.2 (was 2.0.3)
+Installing loofah 2.2.2 (was 2.0.3)
+Fetching rails-html-sanitizer 1.0.4 (was 1.0.3)
+Installing rails-html-sanitizer 1.0.4 (was 1.0.3)
+Fetching actionview 5.1.6 (was 5.1.2)
+Installing actionview 5.1.6 (was 5.1.2)
+Fetching rack 2.0.5 (was 2.0.3)
+Installing rack 2.0.5 (was 2.0.3)
+Fetching rack-test 1.1.0 (was 0.6.3)
+Installing rack-test 1.1.0 (was 0.6.3)
+Fetching actionpack 5.1.6 (was 5.1.2)
+Installing actionpack 5.1.6 (was 5.1.2)
+Fetching nio4r 2.3.1 (was 2.1.0)
+Installing nio4r 2.3.1 (was 2.1.0) with native extensions
+Fetching websocket-extensions 0.1.3 (was 0.1.2)
+Installing websocket-extensions 0.1.3 (was 0.1.2)
+Fetching websocket-driver 0.6.5
+Installing websocket-driver 0.6.5 with native extensions
+Fetching actioncable 5.1.6 (was 5.1.2)
+Installing actioncable 5.1.6 (was 5.1.2)
+Fetching globalid 0.4.1 (was 0.4.0)
+Installing globalid 0.4.1 (was 0.4.0)
+Fetching activejob 5.1.6 (was 5.1.2)
+Installing activejob 5.1.6 (was 5.1.2)
+Fetching mini_mime 1.0.1
+Installing mini_mime 1.0.1
+Fetching mail 2.7.0 (was 2.6.6)
+Installing mail 2.7.0 (was 2.6.6)
+Fetching actionmailer 5.1.6 (was 5.1.2)
+Installing actionmailer 5.1.6 (was 5.1.2)
+Fetching activemodel 5.1.6 (was 5.1.2)
+Installing activemodel 5.1.6 (was 5.1.2)
+Fetching arel 8.0.0
+Installing arel 8.0.0
+Fetching activerecord 5.1.6 (was 5.1.2)
+Installing activerecord 5.1.6 (was 5.1.2)
+Fetching public_suffix 3.0.3 (was 2.0.5)
+Installing public_suffix 3.0.3 (was 2.0.5)
+Fetching addressable 2.5.2 (was 2.5.1)
+Installing addressable 2.5.2 (was 2.5.1)
+Fetching execjs 2.7.0
+Installing execjs 2.7.0
+Fetching autoprefixer-rails 9.1.2 (was 7.1.2.3)
+Installing autoprefixer-rails 9.1.2 (was 7.1.2.3)
+Fetching coderay 1.1.2 (was 1.1.1)
+Installing coderay 1.1.2 (was 1.1.1)
+Fetching better_errors 2.4.0 (was 2.1.1)
+Installing better_errors 2.4.0 (was 2.1.1)
+Fetching bindex 0.5.0
+Installing bindex 0.5.0 with native extensions
+Fetching rb-fsevent 0.10.3 (was 0.10.2)
+Installing rb-fsevent 0.10.3 (was 0.10.2)
+Fetching ffi 1.9.25 (was 1.9.18)
+Installing ffi 1.9.25 (was 1.9.18) with native extensions
+Fetching rb-inotify 0.9.10
+Installing rb-inotify 0.9.10
+Fetching sass-listen 4.0.0
+Installing sass-listen 4.0.0
+Fetching sass 3.5.7 (was 3.5.1)
+Installing sass 3.5.7 (was 3.5.1)
+Fetching bootstrap-sass 3.3.7
+Installing bootstrap-sass 3.3.7
+Using bundler 1.16.3
+Fetching byebug 10.0.2 (was 9.0.6)
+Installing byebug 10.0.2 (was 9.0.6) with native extensions
+Fetching xpath 3.1.0 (was 2.1.0)
+Installing xpath 3.1.0 (was 2.1.0)
+Fetching capybara 2.18.0 (was 2.14.4)
+Installing capybara 2.18.0 (was 2.14.4)
+Fetching childprocess 0.9.0 (was 0.7.1)
+Installing childprocess 0.9.0 (was 0.7.1)
+Fetching coffee-script-source 1.12.2
+Installing coffee-script-source 1.12.2
+Fetching coffee-script 2.4.1
+Installing coffee-script 2.4.1
+Fetching method_source 0.9.0 (was 0.8.2)
+Installing method_source 0.9.0 (was 0.8.2)
+Fetching thor 0.20.0 (was 0.19.4)
+Installing thor 0.20.0 (was 0.19.4)
+Fetching railties 5.1.6 (was 5.1.2)
+Installing railties 5.1.6 (was 5.1.2)
+Fetching coffee-rails 4.2.2
+Installing coffee-rails 4.2.2
+Fetching multipart-post 2.0.0
+Installing multipart-post 2.0.0
+Fetching faraday 0.15.2 (was 0.12.1)
+Installing faraday 0.15.2 (was 0.12.1)
+Fetching multi_json 1.13.1 (was 1.12.1)
+Installing multi_json 1.13.1 (was 1.12.1)
+Fetching gibbon 3.2.0 (was 3.0.2)
+Installing gibbon 3.2.0 (was 3.0.2)
+Fetching high_voltage 3.1.0 (was 3.0.0)
+Installing high_voltage 3.1.0 (was 3.0.0)
+Fetching jbuilder 2.7.0
+Installing jbuilder 2.7.0
+Fetching jquery-rails 4.3.3 (was 4.3.1)
+Installing jquery-rails 4.3.3 (was 4.3.1)
+Fetching ruby_dep 1.5.0
+Installing ruby_dep 1.5.0
+Fetching listen 3.1.5
+Installing listen 3.1.5
+Fetching sprockets 3.7.2 (was 3.7.1)
+Installing sprockets 3.7.2 (was 3.7.1)
+Fetching sprockets-rails 3.2.1 (was 3.2.0)
+Installing sprockets-rails 3.2.1 (was 3.2.0)
+Fetching rails 5.1.6 (was 5.1.2)
+Installing rails 5.1.6 (was 5.1.2)
+Fetching minitest-spec-rails 5.4.0
+Installing minitest-spec-rails 5.4.0
+Fetching pg 1.0.0 (was 0.21.0)
+Installing pg 1.0.0 (was 0.21.0) with native extensions
+Fetching puma 3.12.0 (was 3.9.1)
+Installing puma 3.12.0 (was 3.9.1) with native extensions
+Fetching rails_layout 1.0.42 (was 1.0.41)
+Installing rails_layout 1.0.42 (was 1.0.41)
+Fetching rubyzip 1.2.1
+Installing rubyzip 1.2.1
+Fetching tilt 2.0.8 (was 2.0.7)
+Installing tilt 2.0.8 (was 2.0.7)
+Fetching sass-rails 5.0.7 (was 5.0.6)
+Installing sass-rails 5.0.7 (was 5.0.6)
+Fetching selenium-webdriver 3.14.0 (was 3.4.4)
+Installing selenium-webdriver 3.14.0 (was 3.4.4)
+Fetching spring 2.0.2
+Installing spring 2.0.2
+Fetching spring-watcher-listen 2.0.1
+Installing spring-watcher-listen 2.0.1
+Fetching sqlite3 1.3.13
+Installing sqlite3 1.3.13 with native extensions
+Fetching turbolinks-source 5.2.0 (was 5.0.3)
+Installing turbolinks-source 5.2.0 (was 5.0.3)
+Fetching turbolinks 5.2.0 (was 5.0.1)
+Installing turbolinks 5.2.0 (was 5.0.1)
+Fetching uglifier 4.1.18 (was 3.2.0)
+Installing uglifier 4.1.18 (was 3.2.0)
+Fetching web-console 3.6.2 (was 3.5.1)
+Installing web-console 3.6.2 (was 3.5.1)
+Bundle updated!
+Post-install message from sass:
+
+Ruby Sass is deprecated and will be unmaintained as of 26 March 2019.
+
+* If you use Sass as a command-line tool, we recommend using Dart Sass, the new
+  primary implementation: https://sass-lang.com/install
+
+* If you use Sass as a plug-in for a Ruby web framework, we recommend using the
+  sassc gem: https://github.com/sass/sassc-ruby#readme
+
+* For more details, please refer to the Sass blog:
+  http://sass.logdown.com/posts/7081811
+
+Using rake 12.3.1
+Using concurrent-ruby 1.0.5
+Using i18n 1.1.0
+Using minitest 5.11.3
+Using thread_safe 0.3.6
+Using tzinfo 1.2.5
+Using activesupport 5.1.6
+Using builder 3.2.3
+Using erubi 1.7.1
+Using mini_portile2 2.3.0
+Using nokogiri 1.8.4
+Using rails-dom-testing 2.0.3
+Using crass 1.0.4
+Using loofah 2.2.2
+Using rails-html-sanitizer 1.0.4
+Using actionview 5.1.6
+Using rack 2.0.5
+Using rack-test 1.1.0
+Using actionpack 5.1.6
+Using nio4r 2.3.1
+Using websocket-extensions 0.1.3
+Using websocket-driver 0.6.5
+Using actioncable 5.1.6
+Using globalid 0.4.1
+Using activejob 5.1.6
+Using mini_mime 1.0.1
+Using mail 2.7.0
+Using actionmailer 5.1.6
+Using activemodel 5.1.6
+Using arel 8.0.0
+Using activerecord 5.1.6
+Using public_suffix 3.0.3
+Using addressable 2.5.2
+Using execjs 2.7.0
+Using autoprefixer-rails 9.1.2
+Using coderay 1.1.2
+Using better_errors 2.4.0
+Using bindex 0.5.0
+Using rb-fsevent 0.10.3
+Using ffi 1.9.25
+Using rb-inotify 0.9.10
+Using sass-listen 4.0.0
+Using sass 3.5.7
+Using bootstrap-sass 3.3.7
+Using bundler 1.16.3
+Using byebug 10.0.2
+Using xpath 3.1.0
+Using capybara 2.18.0
+Using childprocess 0.9.0
+Using coffee-script-source 1.12.2
+Using coffee-script 2.4.1
+Using method_source 0.9.0
+Using thor 0.20.0
+Using railties 5.1.6
+Using coffee-rails 4.2.2
+Using multipart-post 2.0.0
+Using faraday 0.15.2
+Using multi_json 1.13.1
+Using gibbon 3.2.0
+Using high_voltage 3.1.0
+Using jbuilder 2.7.0
+Using jquery-rails 4.3.3
+Using ruby_dep 1.5.0
+Using listen 3.1.5
+Using sprockets 3.7.2
+Using sprockets-rails 3.2.1
+Using rails 5.1.6
+Using minitest-spec-rails 5.4.0
+Using pg 1.0.0
+Using puma 3.12.0
+Using rails_layout 1.0.42
+Using rubyzip 1.2.1
+Using tilt 2.0.8
+Using sass-rails 5.0.7
+Using selenium-webdriver 3.14.0
+Using spring 2.0.2
+Using spring-watcher-listen 2.0.1
+Using sqlite3 1.3.13
+Using turbolinks-source 5.2.0
+Using turbolinks 5.2.0
+Using uglifier 4.1.18
+Using web-console 3.6.2
+Bundle complete! 23 Gemfile dependencies, 82 gems now installed.
+Bundled gems are installed into `/usr/local/bundle`
+Removing intermediate container 4fc023e339d5
+ ---> d9387450feb1
 Step 2/3 : EXPOSE 3000
- ---> Using cache
- ---> d6ec041a681c
+ ---> Running in 982e49d22234
+Removing intermediate container 982e49d22234
+ ---> cec92f499e80
 Step 3/3 : CMD ["rails", "s", "-b", "0.0.0.0", "-p" ,"3000"]
- ---> Using cache
- ---> 4d5653498992
-Successfully built 4d5653498992
+ ---> Running in 981c3bd4fe6c
+Removing intermediate container 981c3bd4fe6c
+ ---> 0cfc80fd31bc
+Successfully built 0cfc80fd31bc
 Successfully tagged ft-rails:son
 docker build -t "gitlab" ./
 Sending build context to Docker daemon  6.144kB
@@ -91,4 +1021,4 @@ Step 5/5 : ENTRYPOINT ["sh", "/root/entrypoint.sh"]
 Successfully built 332d778ec58f
 Successfully tagged gitlab:latest
 docker run -d --name "fox_ginger" -p 8022:22 -p 8443:443 -p 8080:80 --privileged "gitlab"
-dca9e28efdf50155a93095d186195f71abb6bce65f81efdc19663004b7dcf169
+ab359f22cb734eb4a8aba7d8f30289fb34f80b73b70a28b6eae9d2986b00b573
