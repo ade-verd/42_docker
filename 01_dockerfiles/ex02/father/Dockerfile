@@ -4,7 +4,7 @@ RUN apt-get -qq update && apt-get -qq install -y build-essential libpq-dev nodej
 ONBUILD COPY my_app /opt/app
 ONBUILD WORKDIR /opt/app
 
-ONBUILD EXPOSE 3001
+ONBUILD EXPOSE 3000
 
 ONBUILD RUN bundle update \
 			&& bundle install \

@@ -1,7 +1,7 @@
 IMG="gitlab"
 CONTAINER_NAME="fox_ginger"
 LOCATION=./
-PORTS=-p 8022:22 -p 8443:443 -p 8083:80
+PORTS=-p 8022:22 -p 8443:443 -p 8080:80
 VM=Char
 IP=$(shell docker-machine ip $(VM))
 if [ "$(shell uname)" = 'Linux' ]; then OPEN=xdg-open ; else OPEN=open; fi

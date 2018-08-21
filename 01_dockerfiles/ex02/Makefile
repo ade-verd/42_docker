@@ -3,7 +3,7 @@ IMG_SON="ft-rails:son"
 CONTAINER_NAME="tadada"
 LOCATION_FATHER=./father
 LOCATION_SON=./son
-PORTS=-p 3001:3001
+PORTS=-p 3000:3000
 VM=Char
 IP=$(shell docker-machine ip $(VM))
 if [ "$(shell uname)" = 'Linux' ]; then OPEN=xdg-open ; else OPEN=open; fi

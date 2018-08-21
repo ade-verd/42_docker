@@ -7,7 +7,7 @@ RUN apt-get -qq update && apt-get -qq upgrade -y && apt-get -qq install -y \
 	&& apt-get autoremove \
 	&& apt-get clean
 
-EXPOSE 443 22 80
+EXPOSE 80 443 22
 # Cf. gitlab architecture
 # HTTPS: TCP 80
 # HTTPS: TCP 443
