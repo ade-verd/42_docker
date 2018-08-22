@@ -1,4 +1,4 @@
-.PHONY: all pullimg build_df clean_cont clean_img
+.PHONY: all pullimg build_df clean_cont clean_img fclean
 
 all: pullimg build_df
 
